@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW" data-theme="light">
+<html lang="zh-TW" data-theme="light" data-cuisine="all">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -13,585 +13,314 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* ── Theme tokens ── */
 [data-theme="light"] {
-  --bg:        #f8f6f1;
-  --bg2:       #f0ede6;
-  --surface:   #ffffff;
-  --surface2:  #f5f2eb;
-  --border:    rgba(30,25,15,0.08);
-  --border-md: rgba(30,25,15,0.14);
-  --text:      #1a1814;
-  --text-2:    #5a5548;
-  --text-3:    #a09880;
-  --gold:      #8b6914;
-  --gold-l:    #faf4e8;
-  --gold-b:    #d4b870;
-  --green:     #2d5a3d;
-  --green-l:   #edf4f0;
-  --green-b:   #9cc4ae;
-  --red:       #8b3030;
-  --red-l:     #fdf2f2;
-  --blue:      #2a4a7a;
-  --blue-l:    #eef3fb;
-  --blue-b:    #9ab8e0;
-  --purple:    #5a3a8a;
-  --purple-l:  #f4f0fb;
-  --sand:      #c8a96a;
-  --shadow:    0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.1), 0 12px 32px rgba(0,0,0,0.07);
-  --overlay:   rgba(0,0,0,0.5);
+  --bg:#f8f6f1; --bg2:#f0ede6; --surface:#ffffff; --surface2:#f3f0e9;
+  --border:rgba(30,25,15,0.08); --border-md:rgba(30,25,15,0.15);
+  --text:#1a1814; --text-2:#5a5548; --text-3:#a09880;
+  --gold:#8b6914; --gold-l:#faf4e8; --gold-b:#d4b870;
+  --green:#2d5a3d; --green-l:#edf4f0; --green-b:#9cc4ae;
+  --red:#8b3030; --red-l:#fdf2f2; --red-b:#d09090;
+  --blue:#2a4a7a; --blue-l:#eef3fb; --blue-b:#9ab8e0;
+  --purple:#5a3a8a; --purple-l:#f4f0fb;
+  --shadow:0 1px 4px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.10),0 12px 32px rgba(0,0,0,0.07);
+  --overlay:rgba(0,0,0,0.52);
 }
 [data-theme="dark"] {
-  --bg:        #111110;
-  --bg2:       #1a1917;
-  --surface:   #1e1d1b;
-  --surface2:  #252420;
-  --border:    rgba(255,250,240,0.08);
-  --border-md: rgba(255,250,240,0.14);
-  --text:      #f0ece4;
-  --text-2:    #a09880;
-  --text-3:    #605850;
-  --gold:      #c8a048;
-  --gold-l:    #2a2418;
-  --gold-b:    #6a5020;
-  --green:     #4a8a5d;
-  --green-l:   #141f18;
-  --green-b:   #2a4a34;
-  --red:       #c05050;
-  --red-l:     #201414;
-  --blue:      #5080c0;
-  --blue-l:    #141824;
-  --blue-b:    #2a3850;
-  --purple:    #9070d0;
-  --purple-l:  #1c1428;
-  --sand:      #9a7840;
-  --shadow:    0 1px 4px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.4), 0 12px 32px rgba(0,0,0,0.3);
-  --overlay:   rgba(0,0,0,0.75);
+  --bg:#111110; --bg2:#1a1917; --surface:#1e1d1b; --surface2:#252420;
+  --border:rgba(255,250,240,0.08); --border-md:rgba(255,250,240,0.15);
+  --text:#f0ece4; --text-2:#a09880; --text-3:#605850;
+  --gold:#c8a048; --gold-l:#2a2418; --gold-b:#6a5020;
+  --green:#4a8a5d; --green-l:#141f18; --green-b:#2a4a34;
+  --red:#c05050; --red-l:#201414; --red-b:#602828;
+  --blue:#5080c0; --blue-l:#141824; --blue-b:#2a3850;
+  --purple:#9070d0; --purple-l:#1c1428;
+  --shadow:0 1px 4px rgba(0,0,0,0.3),0 4px 16px rgba(0,0,0,0.2);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.4),0 12px 32px rgba(0,0,0,0.3);
+  --overlay:rgba(0,0,0,0.75);
 }
 
-/* ── Category themes ── */
-[data-cuisine="japanese"] { --cat-bg: #f5f0e8; --cat-accent: #5a3a1a; --cat-line: #c8a060; }
-[data-cuisine="western"]  { --cat-bg: #eef2f8; --cat-accent: #1a2a4a; --cat-line: #6080b8; }
-[data-cuisine="chinese"]  { --cat-bg: #faf0ee; --cat-accent: #6a1a1a; --cat-line: #c05040; }
-[data-cuisine="cafe"]     { --cat-bg: #f5ede0; --cat-accent: #4a2e10; --cat-line: #b07840; }
-[data-cuisine="korean"]   { --cat-bg: #f0f5ee; --cat-accent: #1a3a20; --cat-line: #508060; }
-[data-cuisine="thai"]     { --cat-bg: #faf5e0; --cat-accent: #4a3800; --cat-line: #c0a000; }
-[data-cuisine="western_american"] { --cat-bg: #f0eef8; --cat-accent: #2a1a5a; --cat-line: #7060c0; }
-[data-cuisine="all"]      { --cat-bg: var(--bg); --cat-accent: var(--gold); --cat-line: var(--sand); }
+/* cuisine bg */
+[data-cuisine*="japanese"]{--cat-bg:#f5f0e8;} [data-theme="dark"][data-cuisine*="japanese"]{--cat-bg:#1e1a12;}
+[data-cuisine*="western"]{--cat-bg:#eef2f8;} [data-theme="dark"][data-cuisine*="western"]{--cat-bg:#121620;}
+[data-cuisine*="western_american"]{--cat-bg:#f0eef8;} [data-theme="dark"][data-cuisine*="western_american"]{--cat-bg:#14101c;}
+[data-cuisine*="chinese"]{--cat-bg:#faf0ee;} [data-theme="dark"][data-cuisine*="chinese"]{--cat-bg:#201210;}
+[data-cuisine*="cafe"]{--cat-bg:#f5ede0;} [data-theme="dark"][data-cuisine*="cafe"]{--cat-bg:#1e160c;}
+[data-cuisine*="korean"]{--cat-bg:#f0f5ee;} [data-theme="dark"][data-cuisine*="korean"]{--cat-bg:#121a14;}
+[data-cuisine*="thai"]{--cat-bg:#faf5e0;} [data-theme="dark"][data-cuisine*="thai"]{--cat-bg:#1c1a08;}
 
-[data-theme="dark"][data-cuisine="japanese"] { --cat-bg: #1e1a12; }
-[data-theme="dark"][data-cuisine="western"]  { --cat-bg: #121620; }
-[data-theme="dark"][data-cuisine="chinese"]  { --cat-bg: #201210; }
-[data-theme="dark"][data-cuisine="cafe"]     { --cat-bg: #1e160c; }
-[data-theme="dark"][data-cuisine="korean"]   { --cat-bg: #121a14; }
-[data-theme="dark"][data-cuisine="thai"]     { --cat-bg: #1c1a08; }
-[data-theme="dark"][data-cuisine="western_american"] { --cat-bg: #141018; }
-[data-theme="dark"][data-cuisine="all"]      { --cat-bg: var(--bg); }
-
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; overflow: hidden; }
-
-body {
-  font-family: 'Noto Sans TC', -apple-system, sans-serif;
-  background: var(--cat-bg, var(--bg));
-  color: var(--text);
-  display: flex;
-  flex-direction: column;
-  transition: background 0.6s ease;
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;}
+body{
+  font-family:'Noto Sans TC',-apple-system,sans-serif;
+  background:var(--cat-bg,var(--bg));
+  color:var(--text);
+  display:flex;flex-direction:column;
+  transition:background 0.5s;
 }
 
-/* ── Topbar ── */
-.topbar {
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: calc(10px + env(safe-area-inset-top)) 18px 12px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+/* topbar */
+.topbar{
+  background:var(--bg);border-bottom:1px solid var(--border);
+  padding:calc(10px + env(safe-area-inset-top)) 16px 12px;
+  flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
 }
-.topbar-brand { display: flex; align-items: baseline; gap: 8px; }
-.topbar-title {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 22px;
-  font-weight: 500;
-  color: var(--text);
-  letter-spacing: 0.05em;
+.brand-title{font-family:'Noto Serif TC',serif;font-size:22px;font-weight:500;letter-spacing:0.06em;color:var(--text);}
+.brand-sub{font-size:10px;color:var(--text-3);letter-spacing:0.1em;margin-top:1px;}
+.topbar-right{display:flex;gap:8px;align-items:center;}
+.api-dot{width:7px;height:7px;border-radius:50%;background:var(--border-md);transition:all 0.4s;flex-shrink:0;}
+.api-dot.ok{background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,0.2);}
+.icon-btn{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--border-md);background:var(--surface2);
+  color:var(--text-2);font-size:16px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all 0.15s;
 }
-.topbar-sub { font-size: 11px; color: var(--text-3); letter-spacing: 0.08em; }
-.topbar-actions { display: flex; gap: 8px; align-items: center; }
-.icon-btn {
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--border-md);
-  background: var(--surface2);
-  color: var(--text-2);
-  font-size: 16px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.icon-btn:active { transform: scale(0.92); }
-.api-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--border-md);
-  transition: all 0.4s;
-  flex-shrink: 0;
-}
-.api-dot.ok { background: #4ade80; box-shadow: 0 0 0 3px rgba(74,222,128,0.2); }
+.icon-btn:active{transform:scale(0.9);}
 
-/* ── Scroll area ── */
-.scroll-area {
-  flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 16px 16px calc(88px + env(safe-area-inset-bottom));
+/* scroll */
+.scroll-area{
+  flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:14px 14px calc(86px + env(safe-area-inset-bottom));
 }
 
-/* ── Cards ── */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 12px;
-  box-shadow: var(--shadow);
+/* cards */
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:15px;margin-bottom:12px;
+  box-shadow:var(--shadow);
 }
-.card-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  margin-bottom: 10px;
+.card-label{font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px;}
+
+/* location */
+.loc-row{display:flex;gap:8px;}
+.loc-input{
+  flex:1;height:44px;padding:0 13px;
+  border:1px solid var(--border-md);border-radius:10px;
+  font-size:14px;font-family:'Noto Sans TC',sans-serif;
+  background:var(--surface2);color:var(--text);outline:none;
+  transition:border-color 0.2s;
+}
+.loc-input:focus{border-color:var(--gold);}
+.btn-locate{
+  height:44px;padding:0 13px;
+  background:var(--gold-l);border:1px solid var(--gold-b);border-radius:10px;
+  color:var(--gold);font-size:13px;font-weight:500;
+  font-family:'Noto Sans TC',sans-serif;cursor:pointer;white-space:nowrap;
+}
+.btn-locate:active{opacity:0.75;}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{
+  height:32px;padding:0 13px;border-radius:999px;
+  border:1px solid var(--border-md);background:var(--surface2);
+  color:var(--text-2);font-size:13px;
+  font-family:'Noto Sans TC',sans-serif;
+  cursor:pointer;display:flex;align-items:center;gap:4px;
+  white-space:nowrap;transition:all 0.15s;
+}
+.chip:active{transform:scale(0.93);}
+.chip.active{background:var(--gold);border-color:var(--gold);color:#fff;font-weight:500;}
+.chip.multi-active{background:var(--gold);border-color:var(--gold);color:#fff;font-weight:500;}
+
+/* divider */
+.div-line{border-top:1px solid var(--border);margin:13px 0;}
+
+/* slider */
+.sl-header{display:flex;justify-content:space-between;margin-bottom:7px;}
+.sl-header label{font-size:13px;color:var(--text-2);}
+.sl-header span{font-size:13px;font-weight:500;color:var(--gold);}
+input[type=range]{width:100%;accent-color:var(--gold);cursor:pointer;}
+
+/* star filter */
+.star-row{display:flex;align-items:center;gap:10px;margin-top:11px;}
+.star-row label{font-size:13px;color:var(--text-2);white-space:nowrap;}
+.star-btns{display:flex;gap:5px;flex-wrap:wrap;}
+.star-btn{
+  height:30px;padding:0 11px;border-radius:999px;
+  border:1px solid var(--border-md);background:var(--surface2);
+  font-size:12px;font-weight:500;
+  font-family:'Noto Sans TC',sans-serif;color:var(--text-2);cursor:pointer;
+  transition:all 0.15s;
+}
+.star-btn.active{background:var(--gold-l);border-color:var(--gold-b);color:var(--gold);font-weight:700;}
+
+/* search bar */
+.search-bar{
+  position:fixed;bottom:0;left:0;right:0;
+  padding:11px 14px calc(11px + env(safe-area-inset-bottom));
+  background:var(--bg);border-top:1px solid var(--border);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:10;
+}
+.btn-search{
+  width:100%;height:50px;
+  background:var(--text);color:var(--bg);border:none;
+  border-radius:14px;font-size:15px;font-weight:500;
+  font-family:'Noto Serif TC',serif;letter-spacing:0.05em;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:all 0.15s;
+}
+.btn-search:active{transform:scale(0.98);opacity:0.85;}
+.btn-search:disabled{opacity:0.5;cursor:not-allowed;}
+
+/* modal */
+.modal-bg{display:none;position:fixed;inset:0;background:var(--overlay);z-index:100;align-items:flex-end;}
+.modal-bg.show{display:flex;}
+.modal-sheet{
+  background:var(--surface);border-radius:20px 20px 0 0;
+  padding:16px 20px calc(24px + env(safe-area-inset-bottom));
+  width:100%;border-top:1px solid var(--border);
+}
+.modal-handle{width:36px;height:4px;background:var(--border-md);border-radius:99px;margin:0 auto 16px;}
+.modal-title{font-family:'Noto Serif TC',serif;font-size:18px;font-weight:500;margin-bottom:6px;}
+.modal-desc{font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:14px;}
+.modal-desc a{color:var(--gold);text-decoration:none;}
+.modal-input{
+  width:100%;height:46px;padding:0 13px;
+  border:1px solid var(--border-md);border-radius:10px;
+  font-size:14px;font-family:monospace;
+  background:var(--surface2);color:var(--text);outline:none;
+  margin-bottom:6px;transition:border-color 0.2s;
+}
+.modal-input:focus{border-color:var(--gold);}
+.modal-status{font-size:12px;color:var(--text-3);min-height:18px;margin-bottom:11px;}
+.btn-modal-p{
+  width:100%;height:48px;background:var(--text);color:var(--bg);
+  border:none;border-radius:12px;font-size:15px;font-weight:500;
+  font-family:'Noto Sans TC',sans-serif;cursor:pointer;margin-bottom:8px;
+}
+.btn-modal-p:active{opacity:0.8;}
+.btn-modal-s{
+  width:100%;height:44px;background:transparent;color:var(--text-2);
+  border:1px solid var(--border-md);border-radius:12px;
+  font-size:14px;font-family:'Noto Sans TC',sans-serif;cursor:pointer;
 }
 
-/* ── Location ── */
-.loc-row { display: flex; gap: 8px; }
-.loc-input {
-  flex: 1; height: 44px;
-  padding: 0 14px;
-  border: 1px solid var(--border-md);
-  border-radius: 10px;
-  font-size: 14px;
-  font-family: 'Noto Sans TC', sans-serif;
-  background: var(--surface2);
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.2s;
-}
-.loc-input:focus { border-color: var(--gold); }
-.btn-locate {
-  height: 44px; padding: 0 14px;
-  background: var(--gold-l);
-  border: 1px solid var(--gold-b);
-  border-radius: 10px;
-  color: var(--gold);
-  font-size: 13px; font-weight: 500;
-  font-family: 'Noto Sans TC', sans-serif;
-  cursor: pointer; white-space: nowrap;
-  transition: all 0.15s;
-}
-.btn-locate:active { opacity: 0.75; }
+/* section header */
+.sec-hdr{display:flex;align-items:center;gap:8px;margin-bottom:11px;}
+.sec-hdr h2{font-family:'Noto Serif TC',serif;font-size:17px;font-weight:500;}
+.badge{font-size:11px;padding:2px 9px;border-radius:99px;border:1px solid;}
+.badge-gold{background:var(--gold-l);color:var(--gold);border-color:var(--gold-b);}
+.badge-purple{background:var(--purple-l);color:var(--purple);border-color:rgba(90,58,138,0.25);}
 
-/* ── Chips ── */
-.chips { display: flex; flex-wrap: wrap; gap: 7px; }
-.chip {
-  height: 34px; padding: 0 14px;
-  border-radius: 999px;
-  border: 1px solid var(--border-md);
-  background: var(--surface2);
-  color: var(--text-2);
-  font-size: 13px;
-  font-family: 'Noto Sans TC', sans-serif;
-  cursor: pointer;
-  display: flex; align-items: center; gap: 4px;
-  white-space: nowrap;
-  transition: all 0.18s;
+/* result card */
+.r-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;margin-bottom:11px;overflow:hidden;
+  box-shadow:var(--shadow);cursor:pointer;
+  transition:transform 0.18s,box-shadow 0.18s;
 }
-.chip:active { transform: scale(0.94); }
-.chip.active {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: #fff;
-  font-weight: 500;
+.r-card:active{transform:scale(0.98);}
+.r-thumb{height:148px;background:var(--surface2);overflow:hidden;position:relative;}
+.r-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.r-thumb-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(0,0,0,0.32) 100%);}
+.r-score-badge{
+  position:absolute;top:10px;right:10px;
+  background:rgba(0,0,0,0.48);backdrop-filter:blur(4px);
+  color:#fff;font-size:13px;font-weight:500;
+  padding:4px 10px;border-radius:99px;
+  display:flex;align-items:center;gap:3px;
 }
+.r-open-badge{
+  position:absolute;bottom:10px;left:10px;
+  font-size:11px;font-weight:500;padding:3px 9px;border-radius:99px;
+}
+.r-open-badge.open{background:rgba(45,90,61,0.85);color:#a8f0c0;}
+.r-open-badge.closed{background:rgba(139,48,48,0.85);color:#f8c0c0;}
+.no-thumb{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-3);gap:5px;}
+.no-thumb span{font-size:32px;}
+.r-body{padding:11px 13px 13px;}
+.r-name{font-family:'Noto Serif TC',serif;font-size:16px;font-weight:400;color:var(--text);margin-bottom:7px;line-height:1.4;}
+.r-pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:7px;}
+.pill{font-size:11px;padding:2px 9px;border-radius:99px;border:1px solid;white-space:nowrap;}
+.pg{background:var(--surface2);border-color:var(--border-md);color:var(--text-2);}
+.po{background:var(--green-l);border-color:var(--green-b);color:var(--green);}
+.pc{background:var(--red-l);border-color:var(--red-b);color:var(--red);}
+.pch{background:#fdf0ee;border-color:#d09080;color:#8b3030;}
+.pwe{background:var(--blue-l);border-color:var(--blue-b);color:var(--blue);}
+.pja{background:var(--purple-l);border-color:#b090d8;color:var(--purple);}
+.pth{background:#faf5e0;border-color:#d8c060;color:#6a5000;}
+.pko{background:#eef5f0;border-color:#80c098;color:#206040;}
+.pbr{background:var(--green-l);border-color:var(--green-b);color:var(--green);}
+.pca{background:#f8f0e5;border-color:#c8a060;color:#6a3810;}
+.pam{background:var(--purple-l);border-color:#a080c8;color:var(--purple);}
+.r-addr-line{font-size:11px;color:var(--text-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.r-tap-hint{font-size:10px;color:var(--text-3);margin-top:5px;text-align:right;letter-spacing:0.03em;}
 
-/* ── Sliders / stars ── */
-.divider { border-top: 1px solid var(--border); margin: 14px 0; }
-.row-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-.row-label label { font-size: 13px; color: var(--text-2); }
-.row-label span { font-size: 13px; font-weight: 500; color: var(--gold); }
-input[type=range] { width: 100%; accent-color: var(--gold); cursor: pointer; }
-.star-row { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
-.star-row label { font-size: 13px; color: var(--text-2); white-space: nowrap; }
-.star-btns { display: flex; gap: 6px; flex-wrap: wrap; }
-.star-btn {
-  height: 30px; padding: 0 12px;
-  border-radius: 999px;
-  border: 1px solid var(--border-md);
-  background: var(--surface2);
-  font-size: 12px; font-weight: 500;
-  font-family: 'Noto Sans TC', sans-serif;
-  color: var(--text-2); cursor: pointer;
-  transition: all 0.15s;
+/* detail sheet */
+.detail-bg{display:none;position:fixed;inset:0;background:var(--overlay);z-index:50;align-items:flex-end;}
+.detail-bg.show{display:flex;}
+.detail-sheet{
+  background:var(--surface);border-radius:20px 20px 0 0;
+  width:100%;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  border-top:1px solid var(--border);
 }
-.star-btn.active { background: var(--gold-l); border-color: var(--gold-b); color: var(--gold); font-weight: 700; }
+.d-photos{position:relative;height:230px;background:var(--surface2);overflow:hidden;flex-shrink:0;}
+.d-photos img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity 0.3s;}
+.d-photo-arrows{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 10px;pointer-events:none;}
+.d-arrow{width:36px;height:36px;border-radius:50%;border:none;background:rgba(0,0,0,0.42);color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:all;transition:background 0.15s;}
+.d-arrow:active{background:rgba(0,0,0,0.68);}
+.d-photo-cnt{position:absolute;bottom:10px;right:12px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;padding:3px 10px;border-radius:99px;}
+.d-close{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,0.42);border:none;color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;}
+.d-body{padding:16px 16px calc(24px + env(safe-area-inset-bottom));}
+.d-name{font-family:'Noto Serif TC',serif;font-size:21px;font-weight:500;color:var(--text);margin-bottom:9px;line-height:1.4;}
+.d-rating-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.d-score{background:var(--gold-l);border:1px solid var(--gold-b);border-radius:99px;padding:5px 13px;font-size:15px;font-weight:500;color:var(--gold);}
+.d-rev-count{font-size:13px;color:var(--text-2);}
+.d-open-tag{font-size:12px;font-weight:500;padding:4px 12px;border-radius:99px;}
+.d-open-tag.open{background:var(--green-l);border:1px solid var(--green-b);color:var(--green);}
+.d-open-tag.closed{background:var(--red-l);border:1px solid var(--red-b);color:var(--red);}
+.d-section{font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin:16px 0 9px;}
+.d-addr{font-size:13px;color:var(--text-2);line-height:1.6;display:flex;gap:5px;align-items:flex-start;margin-bottom:4px;}
+.rv-item{padding:10px 12px;border-radius:10px;margin-bottom:7px;border-left:3px solid;}
+.rv-high{background:var(--green-l);border-color:var(--green);}
+.rv-low{background:var(--red-l);border-color:var(--red);}
+.rv-mid{background:var(--surface2);border-color:var(--border-md);}
+.rv-meta{display:flex;align-items:center;gap:5px;margin-bottom:3px;flex-wrap:wrap;}
+.rv-author{font-size:12px;font-weight:500;}
+.rv-stars{font-size:11px;color:var(--gold);}
+.rv-time{font-size:11px;color:var(--text-3);}
+.rv-text{font-size:12px;color:var(--text-2);line-height:1.65;}
+.rv-more-btn{background:none;border:none;color:var(--gold);font-size:13px;font-weight:500;font-family:'Noto Sans TC',sans-serif;cursor:pointer;padding:5px 0;}
+.pk-block{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:13px;margin-top:4px;}
+.pk-name{font-size:14px;font-weight:500;margin-bottom:5px;}
+.pk-info{font-size:12px;color:var(--text-2);line-height:1.8;margin-bottom:9px;}
+.pk-nav-btn{width:100%;height:38px;background:var(--blue-l);border:1px solid var(--blue-b);border-radius:9px;color:var(--blue);font-size:13px;font-weight:500;font-family:'Noto Sans TC',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;}
+.d-actions{display:flex;gap:8px;margin-top:14px;}
+.d-act{flex:1;height:44px;border-radius:12px;border:1px solid var(--border-md);background:var(--surface2);font-size:13px;font-weight:500;font-family:'Noto Sans TC',sans-serif;color:var(--text-2);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;}
+.d-act.primary{background:var(--text);color:var(--bg);border-color:var(--text);}
+.d-act:active{opacity:0.75;}
 
-/* ── Fixed bottom search bar ── */
-.search-bar {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-  background: var(--bg);
-  border-top: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  z-index: 10;
-}
-.btn-search {
-  width: 100%; height: 50px;
-  background: var(--text);
-  color: var(--bg);
-  border: none;
-  border-radius: 14px;
-  font-size: 15px; font-weight: 500;
-  font-family: 'Noto Serif TC', serif;
-  letter-spacing: 0.06em;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  transition: all 0.2s;
-}
-.btn-search:active { transform: scale(0.98); opacity: 0.85; }
+/* loading / empty */
+.loading{text-align:center;padding:48px 0;color:var(--text-2);font-size:14px;}
+.spinner{width:28px;height:28px;border:2px solid var(--border-md);border-top-color:var(--gold);border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 13px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.empty{text-align:center;padding:48px 0;color:var(--text-2);}
+.empty-icon{font-size:40px;display:block;margin-bottom:11px;}
+.empty small{display:block;margin-top:6px;font-size:12px;color:var(--text-3);}
+.searching-msg{text-align:center;font-size:12px;color:var(--text-3);margin-top:6px;}
 
-/* ── Modal sheet ── */
-.modal-bg {
-  display: none;
-  position: fixed; inset: 0;
-  background: var(--overlay);
-  z-index: 100;
-  align-items: flex-end;
-}
-.modal-bg.show { display: flex; }
-.modal-sheet {
-  background: var(--surface);
-  border-radius: 20px 20px 0 0;
-  padding: 16px 20px calc(24px + env(safe-area-inset-bottom));
-  width: 100%;
-  border-top: 1px solid var(--border);
-}
-.modal-handle {
-  width: 36px; height: 4px;
-  background: var(--border-md);
-  border-radius: 99px;
-  margin: 0 auto 18px;
-}
-.modal-title { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 500; margin-bottom: 6px; }
-.modal-desc { font-size: 13px; color: var(--text-2); line-height: 1.7; margin-bottom: 16px; }
-.modal-desc a { color: var(--gold); text-decoration: none; }
-.modal-input {
-  width: 100%; height: 46px;
-  padding: 0 14px;
-  border: 1px solid var(--border-md);
-  border-radius: 10px;
-  font-size: 14px; font-family: monospace;
-  background: var(--surface2);
-  color: var(--text); outline: none;
-  margin-bottom: 6px;
-  transition: border-color 0.2s;
-}
-.modal-input:focus { border-color: var(--gold); }
-.modal-status { font-size: 12px; color: var(--text-3); min-height: 18px; margin-bottom: 12px; }
-.btn-modal-primary {
-  width: 100%; height: 48px;
-  background: var(--text);
-  color: var(--bg);
-  border: none; border-radius: 12px;
-  font-size: 15px; font-weight: 500;
-  font-family: 'Noto Sans TC', sans-serif;
-  cursor: pointer; margin-bottom: 8px;
-  transition: opacity 0.15s;
-}
-.btn-modal-primary:active { opacity: 0.8; }
-.btn-modal-secondary {
-  width: 100%; height: 44px;
-  background: transparent;
-  color: var(--text-2);
-  border: 1px solid var(--border-md);
-  border-radius: 12px;
-  font-size: 14px;
-  font-family: 'Noto Sans TC', sans-serif;
-  cursor: pointer;
-}
-
-/* ── Detail sheet ── */
-.detail-bg {
-  display: none;
-  position: fixed; inset: 0;
-  background: var(--overlay);
-  z-index: 50;
-  align-items: flex-end;
-}
-.detail-bg.show { display: flex; }
-.detail-sheet {
-  background: var(--surface);
-  border-radius: 20px 20px 0 0;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  border-top: 1px solid var(--border);
-}
-.detail-photos {
-  position: relative;
-  height: 240px;
-  background: var(--surface2);
-  overflow: hidden;
-}
-.detail-photos img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: opacity 0.35s;
-}
-.detail-photo-nav {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 12px;
-  pointer-events: none;
-}
-.d-arrow {
-  width: 38px; height: 38px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(0,0,0,0.4);
-  color: #fff; font-size: 20px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; pointer-events: all;
-}
-.d-arrow:active { background: rgba(0,0,0,0.65); }
-.detail-photo-count {
-  position: absolute; bottom: 10px; right: 12px;
-  background: rgba(0,0,0,0.45); color: #fff;
-  font-size: 11px; padding: 3px 10px; border-radius: 99px;
-}
-.detail-close {
-  position: absolute; top: 12px; right: 12px;
-  width: 32px; height: 32px; border-radius: 50%;
-  background: rgba(0,0,0,0.4); border: none;
-  color: #fff; font-size: 18px; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; z-index: 5;
-}
-.detail-body { padding: 18px 18px calc(24px + env(safe-area-inset-bottom)); }
-.detail-name {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 22px; font-weight: 500;
-  color: var(--text); margin-bottom: 10px;
-  line-height: 1.35;
-}
-.detail-rating-row {
-  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
-}
-.detail-score {
-  background: var(--gold-l); border: 1px solid var(--gold-b);
-  border-radius: 99px; padding: 5px 14px;
-  font-size: 16px; font-weight: 500; color: var(--gold);
-  display: flex; align-items: center; gap: 4px;
-}
-.detail-reviews-count { font-size: 13px; color: var(--text-2); }
-.detail-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-.detail-addr {
-  font-size: 13px; color: var(--text-2);
-  display: flex; gap: 6px; align-items: flex-start;
-  margin-bottom: 14px; line-height: 1.6;
-}
-.detail-section-title {
-  font-size: 10px; font-weight: 500; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--text-3);
-  margin-bottom: 10px; margin-top: 18px;
-}
-.rv-item {
-  padding: 10px 12px; border-radius: 10px;
-  margin-bottom: 8px; border-left: 3px solid;
-}
-.rv-high { background: var(--green-l); border-color: var(--green); }
-.rv-low  { background: var(--red-l);   border-color: var(--red); }
-.rv-mid  { background: var(--surface2); border-color: var(--border-md); }
-.rv-meta { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; flex-wrap: wrap; }
-.rv-author { font-size: 12px; font-weight: 500; }
-.rv-stars  { font-size: 11px; color: var(--gold); }
-.rv-time   { font-size: 11px; color: var(--text-3); }
-.rv-text   { font-size: 13px; color: var(--text-2); line-height: 1.65; }
-.rv-more-btn {
-  background: none; border: none;
-  color: var(--gold); font-size: 13px; font-weight: 500;
-  font-family: 'Noto Sans TC', sans-serif;
-  cursor: pointer; padding: 6px 0;
-}
-.pk-detail-block {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 12px; padding: 14px;
-  margin-top: 4px;
-}
-.pk-detail-name { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
-.pk-detail-info { font-size: 12px; color: var(--text-2); line-height: 1.8; margin-bottom: 10px; }
-.pk-nav-btn {
-  width: 100%; height: 38px;
-  background: var(--blue-l); border: 1px solid var(--blue-b);
-  border-radius: 10px; color: var(--blue);
-  font-size: 13px; font-weight: 500;
-  font-family: 'Noto Sans TC', sans-serif;
-  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
-}
-.detail-actions {
-  display: flex; gap: 8px; margin-top: 16px;
-}
-.detail-act {
-  flex: 1; height: 44px;
-  border-radius: 12px;
-  border: 1px solid var(--border-md);
-  background: var(--surface2);
-  font-size: 13px; font-weight: 500;
-  font-family: 'Noto Sans TC', sans-serif;
-  color: var(--text-2); cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 5px;
-}
-.detail-act.primary {
-  background: var(--text); color: var(--bg); border-color: var(--text);
-}
-.detail-act:active { opacity: 0.75; }
-
-/* ── Result list cards ── */
-.section-hdr {
-  display: flex; align-items: center; gap: 8px;
-  margin-bottom: 12px;
-}
-.section-hdr h2 {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 17px; font-weight: 500; color: var(--text);
-}
-.count-badge {
-  background: var(--gold-l); color: var(--gold);
-  border: 1px solid var(--gold-b);
-  font-size: 11px; padding: 2px 9px; border-radius: 99px;
-}
-.featured-badge {
-  background: var(--purple-l); color: var(--purple);
-  border: 1px solid rgba(90,58,138,0.2);
-  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 2px 9px; border-radius: 99px; font-weight: 500;
-}
-
-.r-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  margin-bottom: 12px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.r-card:active { transform: scale(0.98); }
-
-.r-thumb {
-  height: 140px;
-  background: var(--surface2);
-  overflow: hidden;
-  position: relative;
-}
-.r-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.r-thumb-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.35) 100%);
-}
-.r-thumb-score {
-  position: absolute; top: 10px; right: 10px;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(4px);
-  color: #fff; font-size: 13px; font-weight: 500;
-  padding: 4px 10px; border-radius: 99px;
-  display: flex; align-items: center; gap: 4px;
-}
-.no-thumb {
-  width: 100%; height: 100%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  color: var(--text-3); font-size: 12px; gap: 6px;
-}
-.no-thumb span { font-size: 32px; }
-
-.r-body { padding: 12px 14px 14px; }
-.r-name {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 16px; font-weight: 400;
-  color: var(--text); margin-bottom: 7px;
-  line-height: 1.4;
-}
-.r-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
-.pill {
-  font-size: 11px; padding: 3px 9px;
-  border-radius: 99px; border: 1px solid;
-  font-weight: 400; white-space: nowrap;
-}
-.pg { background: var(--surface2); border-color: var(--border-md); color: var(--text-2); }
-.po { background: var(--green-l); border-color: var(--green-b); color: var(--green); }
-.pc { background: var(--red-l); border-color: #d08080; color: var(--red); }
-.pch { background: #fdf0ee; border-color: #d09080; color: #8b3030; }
-.pwe { background: var(--blue-l); border-color: var(--blue-b); color: var(--blue); }
-.pja { background: var(--purple-l); border-color: #b090d8; color: var(--purple); }
-.pth { background: #faf5e0; border-color: #d8c060; color: #6a5000; }
-.pko { background: #eef5f0; border-color: #80c098; color: #206040; }
-.pbr { background: var(--green-l); border-color: var(--green-b); color: var(--green); }
-.pca { background: #f8f0e5; border-color: #c8a060; color: #6a3810; }
-.pam { background: var(--purple-l); border-color: #a080c8; color: var(--purple); }
-
-.r-addr-line {
-  font-size: 11px; color: var(--text-3);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.r-hint { font-size: 11px; color: var(--text-3); margin-top: 5px; text-align: right; }
-
-/* ── Loading / empty ── */
-.loading { text-align: center; padding: 52px 0; color: var(--text-2); font-size: 14px; }
-.spinner {
-  width: 28px; height: 28px;
-  border: 2px solid var(--border-md);
-  border-top-color: var(--gold);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin: 0 auto 14px;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.empty { text-align: center; padding: 52px 0; color: var(--text-2); }
-.empty-icon { font-size: 40px; display: block; margin-bottom: 12px; }
-.empty small { display: block; margin-top: 6px; font-size: 12px; color: var(--text-3); }
-
-#map { display: none; }
+#map{display:none;}
 </style>
 </head>
 <body>
 
-<!-- Topbar -->
 <div class="topbar">
-  <div class="topbar-brand">
-    <div class="topbar-title">尋味</div>
-    <div class="topbar-sub">附近美食探索</div>
+  <div>
+    <div class="brand-title">尋味</div>
+    <div class="brand-sub">附近美食探索</div>
   </div>
-  <div class="topbar-actions">
+  <div class="topbar-right">
     <div class="api-dot" id="apiDot"></div>
-    <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="切換主題">🌙</button>
-    <button class="icon-btn" onclick="showApiModal()" title="API 設定">⚙️</button>
+    <button class="icon-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+    <button class="icon-btn" onclick="showApiModal()">⚙️</button>
   </div>
 </div>
 
-<!-- Scroll content -->
 <div class="scroll-area">
 
-  <!-- Location -->
   <div class="card">
     <div class="card-label">所在位置</div>
     <div class="loc-row">
@@ -600,38 +329,40 @@ input[type=range] { width: 100%; accent-color: var(--gold); cursor: pointer; }
     </div>
   </div>
 
-  <!-- Filters -->
   <div class="card">
-    <div class="card-label">用餐時段</div>
+    <div class="card-label">用餐時段（可複選）</div>
     <div class="chips" id="typeChips">
-      <button class="chip active" data-val="all"       onclick="setFilter('type',this)">全部</button>
-      <button class="chip"        data-val="breakfast" onclick="setFilter('type',this)">🌅 早餐</button>
-      <button class="chip"        data-val="brunch"    onclick="setFilter('type',this)">☀️ 早午餐</button>
-      <button class="chip"        data-val="lunch"     onclick="setFilter('type',this)">🌤 午餐</button>
-      <button class="chip"        data-val="afternoon" onclick="setFilter('type',this)">🍰 下午茶</button>
-      <button class="chip"        data-val="cafe"      onclick="setFilter('type',this)">☕ 咖啡廳</button>
-      <button class="chip"        data-val="dinner"    onclick="setFilter('type',this)">🌙 晚餐</button>
-      <button class="chip"        data-val="supper"    onclick="setFilter('type',this)">🌃 消夜</button>
+      <button class="chip" data-val="all"       onclick="toggleType(this)">全部</button>
+      <button class="chip" data-val="breakfast" onclick="toggleType(this)">🌅 早餐</button>
+      <button class="chip" data-val="brunch"    onclick="toggleType(this)">☀️ 早午餐</button>
+      <button class="chip" data-val="lunch"     onclick="toggleType(this)">🌤 午餐</button>
+      <button class="chip" data-val="afternoon" onclick="toggleType(this)">🍰 下午茶</button>
+      <button class="chip" data-val="cafe"      onclick="toggleType(this)">☕ 咖啡廳</button>
+      <button class="chip" data-val="dinner"    onclick="toggleType(this)">🌙 晚餐</button>
+      <button class="chip" data-val="supper"    onclick="toggleType(this)">🌃 消夜</button>
     </div>
-    <div class="divider"></div>
-    <div class="card-label">料理類型</div>
+
+    <div class="div-line"></div>
+    <div class="card-label">料理類型（可複選）</div>
     <div class="chips" id="cuisineChips">
-      <button class="chip active" data-val="all"              onclick="setFilter('cuisine',this)">全部</button>
-      <button class="chip"        data-val="chinese"          onclick="setFilter('cuisine',this)">🥢 中式</button>
-      <button class="chip"        data-val="western"          onclick="setFilter('cuisine',this)">🍳 西式</button>
-      <button class="chip"        data-val="western_american" onclick="setFilter('cuisine',this)">🍔 美式</button>
-      <button class="chip"        data-val="japanese"         onclick="setFilter('cuisine',this)">🍱 日式</button>
-      <button class="chip"        data-val="thai"             onclick="setFilter('cuisine',this)">🌶 泰式</button>
-      <button class="chip"        data-val="korean"           onclick="setFilter('cuisine',this)">🥘 韓式</button>
-      <button class="chip"        data-val="cafe"             onclick="setFilter('cuisine',this)">☕ 咖啡廳</button>
+      <button class="chip" data-val="all"              onclick="toggleCuisine(this)">全部</button>
+      <button class="chip" data-val="chinese"          onclick="toggleCuisine(this)">🥢 中式</button>
+      <button class="chip" data-val="western"          onclick="toggleCuisine(this)">🍳 西式</button>
+      <button class="chip" data-val="western_american" onclick="toggleCuisine(this)">🍔 美式</button>
+      <button class="chip" data-val="japanese"         onclick="toggleCuisine(this)">🍱 日式</button>
+      <button class="chip" data-val="thai"             onclick="toggleCuisine(this)">🌶 泰式</button>
+      <button class="chip" data-val="korean"           onclick="toggleCuisine(this)">🥘 韓式</button>
+      <button class="chip" data-val="cafe"             onclick="toggleCuisine(this)">☕ 咖啡廳</button>
     </div>
-    <div class="divider"></div>
-    <div class="row-label">
+
+    <div class="div-line"></div>
+    <div class="sl-header">
       <label>搜尋範圍</label>
-      <span id="rv">800m</span>
+      <span id="rv">1.0km</span>
     </div>
-    <input type="range" min="200" max="5000" step="100" value="800" id="radiusSlider"
-      oninput="document.getElementById('rv').textContent=this.value+'m'"/>
+    <input type="range" min="200" max="5000" step="100" value="1000" id="radiusSlider"
+      oninput="updateRadius(this.value)"/>
+
     <div class="star-row">
       <label>最低評分</label>
       <div class="star-btns">
@@ -646,9 +377,8 @@ input[type=range] { width: 100%; accent-color: var(--gold); cursor: pointer; }
   <div id="results"></div>
 </div>
 
-<!-- Search bar -->
 <div class="search-bar">
-  <button class="btn-search" onclick="doSearch()">
+  <button class="btn-search" id="searchBtn" onclick="doSearch()">
     <span>🔍</span><span>搜尋附近美食</span>
   </button>
 </div>
@@ -658,19 +388,16 @@ input[type=range] { width: 100%; accent-color: var(--gold); cursor: pointer; }
   <div class="modal-sheet">
     <div class="modal-handle"></div>
     <div class="modal-title">API Key 設定</div>
-    <div class="modal-desc">
-      設定後自動儲存於裝置，下次無需重新輸入。<br>
-      <a href="https://console.cloud.google.com/apis/credentials" target="_blank">前往 Google Cloud 申請</a>（需啟用 Places API + Geocoding API）
-    </div>
+    <div class="modal-desc">設定後自動儲存，下次無需重新輸入。<br><a href="https://console.cloud.google.com/apis/credentials" target="_blank">前往 Google Cloud 申請</a>（需啟用 Places API + Geocoding API）</div>
     <input class="modal-input" type="password" id="apiKeyInput" placeholder="AIzaSy..."/>
     <div class="modal-status" id="apiStatus"></div>
-    <button class="btn-modal-primary" onclick="saveAndLoad()">儲存並載入</button>
-    <button class="btn-modal-secondary" onclick="hideApiModal()">取消</button>
+    <button class="btn-modal-p" onclick="saveAndLoad()">儲存並載入</button>
+    <button class="btn-modal-s" onclick="hideApiModal()">取消</button>
   </div>
 </div>
 
 <!-- Detail Sheet -->
-<div class="detail-bg" id="detailBg" onclick="closeDetail(event)">
+<div class="detail-bg" id="detailBg" onclick="closeDetailOutside(event)">
   <div class="detail-sheet" id="detailSheet">
     <div id="detailContent"></div>
   </div>
@@ -683,16 +410,12 @@ input[type=range] { width: 100%; accent-color: var(--gold); cursor: pointer; }
 let placesService, geocoder, mapsLoaded = false;
 let currentLat = null, currentLng = null;
 let minRating = 3.5;
-let filters = { type: 'all', cuisine: 'all' };
-let detailData = {};
+let selectedTypes = new Set();    // empty = all
+let selectedCuisines = new Set(); // empty = all
+let searchRadius = 1000;
+let dpPhotos = [], dpIdx = 0;
 
-const TYPE_KW = {
-  all:'餐廳', breakfast:'早餐', brunch:'早午餐', lunch:'午餐',
-  afternoon:'下午茶', cafe:'咖啡', dinner:'晚餐', supper:'消夜 宵夜'
-};
-const CUISINE_KW = {
-  chinese:'中式', western:'西式', western_american:'美式', japanese:'日式', thai:'泰式', korean:'韓式', cafe:'咖啡廳'
-};
+// ── Cuisine info ──
 const C_INFO = {
   chinese:          {label:'中式',  cls:'pch', emoji:'🥢'},
   western:          {label:'西式',  cls:'pwe', emoji:'🍳'},
@@ -705,11 +428,23 @@ const C_INFO = {
   other:            {label:'其他',  cls:'pg',  emoji:'🍽'},
 };
 
+const TYPE_KEYWORDS = {
+  all:'餐廳 小吃', breakfast:'早餐 豆漿 蛋餅', brunch:'早午餐 brunch',
+  lunch:'午餐 定食 便當', afternoon:'下午茶 甜點 蛋糕 咖啡',
+  cafe:'咖啡廳 coffee cafe 手搖', dinner:'晚餐 熱炒 餐廳',
+  supper:'消夜 宵夜 鹹酥雞 滷味'
+};
+const CUISINE_KEYWORDS = {
+  chinese:'中式 台灣 小吃 滷肉 牛肉麵', western:'西式 義大利 pizza pasta',
+  western_american:'美式 漢堡 burger 炸雞', japanese:'日式 壽司 拉麵 丼',
+  thai:'泰式 打拋 泰國', korean:'韓式 韓國 烤肉 部隊鍋', cafe:'咖啡 coffee cafe'
+};
+
 // ── Init ──
 window.addEventListener('load', () => {
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
   const theme = localStorage.getItem('theme') || 'light';
-  setTheme(theme);
+  applyTheme(theme);
   const key = localStorage.getItem('gmaps_key');
   if (key) { document.getElementById('apiKeyInput').value = key; loadSDK(key); }
   else setTimeout(showApiModal, 500);
@@ -720,21 +455,65 @@ window.addEventListener('load', () => {
 });
 
 // ── Theme ──
-function setTheme(t) {
+function applyTheme(t) {
   document.documentElement.setAttribute('data-theme', t);
   localStorage.setItem('theme', t);
   document.getElementById('themeBtn').textContent = t === 'dark' ? '☀️' : '🌙';
 }
 function toggleTheme() {
-  setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
 }
 
-// ── Cuisine background ──
-function setCuisineBg(c) {
-  document.documentElement.setAttribute('data-cuisine', c || 'all');
+// ── Radius ──
+function updateRadius(v) {
+  searchRadius = parseInt(v);
+  document.getElementById('rv').textContent = v >= 1000 ? (v/1000).toFixed(1)+'km' : v+'m';
 }
 
-// ── API Modal ──
+// ── Multi-select chips ──
+function toggleType(el) {
+  const v = el.dataset.val;
+  if (v === 'all') {
+    selectedTypes.clear();
+    document.querySelectorAll('#typeChips .chip').forEach(b => b.classList.remove('multi-active'));
+    el.classList.add('multi-active');
+    return;
+  }
+  document.querySelector('#typeChips .chip[data-val="all"]').classList.remove('multi-active');
+  if (selectedTypes.has(v)) { selectedTypes.delete(v); el.classList.remove('multi-active'); }
+  else { selectedTypes.add(v); el.classList.add('multi-active'); }
+  if (selectedTypes.size === 0) {
+    document.querySelector('#typeChips .chip[data-val="all"]').classList.add('multi-active');
+  }
+}
+
+function toggleCuisine(el) {
+  const v = el.dataset.val;
+  if (v === 'all') {
+    selectedCuisines.clear();
+    document.querySelectorAll('#cuisineChips .chip').forEach(b => b.classList.remove('multi-active'));
+    el.classList.add('multi-active');
+    document.documentElement.setAttribute('data-cuisine', 'all');
+    return;
+  }
+  document.querySelector('#cuisineChips .chip[data-val="all"]').classList.remove('multi-active');
+  if (selectedCuisines.has(v)) { selectedCuisines.delete(v); el.classList.remove('multi-active'); }
+  else { selectedCuisines.add(v); el.classList.add('multi-active'); }
+  if (selectedCuisines.size === 0) {
+    document.querySelector('#cuisineChips .chip[data-val="all"]').classList.add('multi-active');
+    document.documentElement.setAttribute('data-cuisine', 'all');
+  } else {
+    document.documentElement.setAttribute('data-cuisine', [...selectedCuisines].join(' '));
+  }
+}
+
+function setRating(val, el) {
+  minRating = val;
+  document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── API ──
 function showApiModal() { document.getElementById('apiModal').classList.add('show'); }
 function hideApiModal() { document.getElementById('apiModal').classList.remove('show'); }
 function closeApiModal(e) { if (e.target === document.getElementById('apiModal')) hideApiModal(); }
@@ -760,7 +539,10 @@ window.initMaps = function() {
   mapsLoaded = true;
   document.getElementById('apiDot').classList.add('ok');
   document.getElementById('apiStatus').textContent = '✅ 載入成功';
-  setTimeout(hideApiModal, 700);
+  // activate "all" chips by default
+  document.querySelector('#typeChips .chip[data-val="all"]').classList.add('multi-active');
+  document.querySelector('#cuisineChips .chip[data-val="all"]').classList.add('multi-active');
+  setTimeout(hideApiModal, 600);
 };
 
 // ── Location ──
@@ -774,29 +556,17 @@ function locateMe() {
     if (geocoder) {
       geocoder.geocode({location:{lat:currentLat,lng:currentLng},language:'zh-TW'}, (res,st) => {
         if (st==='OK'&&res[0]) {
-          const addr = res[0].formatted_address.replace('台灣','').trim();
+          const addr = res[0].formatted_address.replace(/^台灣/,'').trim();
           document.getElementById('locationInput').value = addr;
           localStorage.setItem('last_loc_text', addr);
         }
       });
+    } else {
+      document.getElementById('locationInput').value = `${currentLat.toFixed(5)}, ${currentLng.toFixed(5)}`;
     }
     btn.textContent = '✅ 已定位'; btn.disabled = false;
   }, () => { btn.textContent = '📍 定位'; btn.disabled = false; alert('無法取得位置，請確認定位權限'); },
-  {enableHighAccuracy:true, timeout:10000});
-}
-
-// ── Filters ──
-function setFilter(group, el) {
-  filters[group] = el.dataset.val;
-  const pid = group==='type'?'typeChips':'cuisineChips';
-  document.querySelectorAll(`#${pid} .chip`).forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  if (group==='cuisine') setCuisineBg(el.dataset.val);
-}
-function setRating(val, el) {
-  minRating = val;
-  document.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
+  {enableHighAccuracy:true,timeout:10000});
 }
 
 // ── Helpers ──
@@ -808,183 +578,288 @@ function mDist(la1,lo1,la2,lo2) {
 function fmtDist(m) { return m>=1000?(m/1000).toFixed(1)+'km':m+'m'; }
 
 function cuisineOf(name, types) {
-  const s=((name||'')+(types||[]).join(' ')).toLowerCase();
+  const s = ((name||'')+(types||[]).join(' ')).toLowerCase();
   if(/漢堡|美式|burger|diner|bbq|炸雞|wings|american/.test(s)) return 'western_american';
-  if(/中式|粥|燒臘|滷肉|豆漿|饅頭|飯糰|蛋餅|包子|米粉|麵線|炒飯|chinese|taiwan|小籠|牛肉麵|涼麵|鹹酥/.test(s)) return 'chinese';
-  if(/西式|三明治|吐司|鬆餅|貝果|western|sandwich|pizza|pasta|bistro/.test(s)) return 'western';
-  if(/日式|壽司|拉麵|丼|定食|japanese|sushi|ramen|udon/.test(s)) return 'japanese';
+  if(/中式|粥|燒臘|滷肉|豆漿|饅頭|飯糰|蛋餅|包子|米粉|麵線|炒飯|chinese|台式|小籠|牛肉麵|涼麵|鹹酥|熱炒|便當/.test(s)) return 'chinese';
+  if(/西式|三明治|吐司|鬆餅|貝果|western|sandwich|pizza|pasta|bistro|歐式/.test(s)) return 'western';
+  if(/日式|壽司|拉麵|丼|定食|japanese|sushi|ramen|udon|天婦羅|居酒屋/.test(s)) return 'japanese';
   if(/泰式|打拋|泰國|thai/.test(s)) return 'thai';
   if(/韓式|韓國|korean|部隊鍋|石鍋|烤肉/.test(s)) return 'korean';
-  if(/咖啡|coffee|cafe|caf[eé]|拿鐵/.test(s)) return 'cafe';
+  if(/咖啡|coffee|cafe|caf[eé]|拿鐵|cappuccino|手沖|烘焙/.test(s)) return 'cafe';
   if(/早午餐|brunch/.test(s)) return 'brunch';
   return 'other';
 }
+
+function matchesCuisineFilter(name, types) {
+  if (selectedCuisines.size === 0) return true;
+  const c = cuisineOf(name, types);
+  return selectedCuisines.has(c) || selectedCuisines.has('cafe') && c==='cafe';
+}
+
 function nearestPark(parks, pLat, pLng) {
   let best=null, bd=Infinity;
   (parks||[]).forEach(pk=>{
     const d=mDist(pLat,pLng,pk.geometry.location.lat(),pk.geometry.location.lng());
     if(d<bd){bd=d;best=pk;}
   });
-  return best?{name:best.name,dist:bd,placeId:best.place_id,vicinity:best.vicinity||'',rating:best.rating,openNow:best.opening_hours?.isOpen()}:null;
+  return best?{name:best.name,dist:bd,placeId:best.place_id,vicinity:best.vicinity||'',rating:best.rating}:null;
 }
-function rcls(r){return r>=4?'rv-high':r<=2?'rv-low':'rv-mid';}
 
-// ── Search ──
-function doSearch() {
+// Build keyword list based on selections
+function buildKeywords() {
+  const typeKws = selectedTypes.size > 0
+    ? [...selectedTypes].flatMap(t => (TYPE_KEYWORDS[t]||'').split(' ').filter(Boolean))
+    : (TYPE_KEYWORDS['all']||'').split(' ').filter(Boolean);
+  const cuisineKws = selectedCuisines.size > 0
+    ? [...selectedCuisines].flatMap(c => (CUISINE_KEYWORDS[c]||'').split(' ').filter(Boolean))
+    : [];
+  // Combine: pair each cuisine kw with a type kw for broader coverage
+  if (cuisineKws.length > 0 && typeKws.length > 0) {
+    const combos = [];
+    cuisineKws.forEach(ck => typeKws.slice(0,2).forEach(tk => combos.push(ck+' '+tk)));
+    cuisineKws.forEach(ck => combos.push(ck)); // also just cuisine alone
+    return [...new Set(combos)].slice(0, 8);
+  }
+  return typeKws.slice(0, 6);
+}
+
+// ── Core search with multi-keyword + dedup ──
+async function searchWithKeyword(lat, lng, keyword, radius) {
+  return new Promise(resolve => {
+    placesService.nearbySearch({
+      location: new google.maps.LatLng(lat, lng),
+      rankBy: google.maps.places.RankBy.DISTANCE, // distance-first, no radius cap
+      type: 'restaurant',
+      keyword,
+      language: 'zh-TW',
+    }, (results, status) => {
+      if (status === 'OK' || status === 'ZERO_RESULTS') {
+        // Filter by actual distance and rating
+        const filtered = (results||[]).filter(p => {
+          const d = mDist(lat,lng,p.geometry.location.lat(),p.geometry.location.lng());
+          p._dist = d;
+          return d <= radius && (!minRating || (p.rating||0) >= minRating);
+        });
+        resolve(filtered);
+      } else {
+        resolve([]);
+      }
+    });
+  });
+}
+
+async function searchFeatured(lat, lng, keyword, radius) {
+  return new Promise(resolve => {
+    placesService.nearbySearch({
+      location: new google.maps.LatLng(lat, lng),
+      rankBy: google.maps.places.RankBy.DISTANCE,
+      type: 'restaurant',
+      keyword,
+      language: 'zh-TW',
+    }, (results, status) => {
+      if (status === 'OK') {
+        const feat = (results||[]).filter(p => {
+          const d = mDist(lat,lng,p.geometry.location.lat(),p.geometry.location.lng());
+          p._dist = d;
+          return d > radius && d <= radius*3 && (p.rating||0) >= 4.5;
+        });
+        resolve(feat);
+      } else resolve([]);
+    });
+  });
+}
+
+async function searchParkings(lat, lng, radius) {
+  return new Promise(resolve => {
+    placesService.nearbySearch({
+      location: new google.maps.LatLng(lat, lng),
+      radius: Math.min(radius + 1500, 50000),
+      type: 'parking',
+      language: 'zh-TW',
+    }, (results) => resolve(results||[]));
+  });
+}
+
+// ── Main search ──
+async function doSearch() {
   if (!mapsLoaded) { showApiModal(); return; }
-  const radius = parseInt(document.getElementById('radiusSlider').value);
   const locVal = document.getElementById('locationInput').value.trim();
   const div = document.getElementById('results');
-  div.innerHTML = `<div class="loading"><div class="spinner"></div>搜尋中...</div>`;
+  const btn = document.getElementById('searchBtn');
+  btn.disabled = true;
+  div.innerHTML = `<div class="loading"><div class="spinner"></div>搜尋中...</div><div class="searching-msg">正在搜尋多個關鍵字，可能需要幾秒鐘</div>`;
 
-  const go = (lat, lng) => {
+  const go = async (lat, lng) => {
     currentLat=lat; currentLng=lng;
     localStorage.setItem('last_lat',lat); localStorage.setItem('last_lng',lng);
-    const cuisineKw = CUISINE_KW[filters.cuisine]||'';
-    const typeKw = TYPE_KW[filters.type]||'餐廳';
-    const keyword = (cuisineKw+' '+typeKw).trim();
-    const placeType = (filters.type==='cafe'||filters.cuisine==='cafe') ? 'cafe' : 'restaurant';
 
-    placesService.nearbySearch({
-      location: new google.maps.LatLng(lat,lng),
-      radius: Math.min(radius, 50000),
-      type: placeType, keyword, language:'zh-TW',
-      rankBy: google.maps.places.RankBy.PROMINENCE,
-    }, (foods, status) => {
-      if (status!=='OK'&&status!=='ZERO_RESULTS') {
-        div.innerHTML=`<div class="empty"><span class="empty-icon">⚠️</span>搜尋失敗（${status}）<small>請確認 Places API 已啟用並已綁定帳單</small></div>`;
-        return;
-      }
+    const keywords = buildKeywords();
+    const seen = new Set();
+    let allInside = [], allFeatured = [];
 
-      // Hard distance filter
-      let all = (foods||[]).filter(p=>{
-        const d=mDist(lat,lng,p.geometry.location.lat(),p.geometry.location.lng());
-        p._dist=d; return !minRating||(p.rating||0)>=minRating;
+    // Run all keyword searches in parallel batches
+    const batchSize = 3;
+    for (let i=0; i<keywords.length; i+=batchSize) {
+      const batch = keywords.slice(i,i+batchSize);
+      const results = await Promise.all(batch.map(kw => searchWithKeyword(lat,lng,kw,searchRadius)));
+      results.forEach(list => {
+        list.forEach(p => {
+          if (!seen.has(p.place_id)) { seen.add(p.place_id); allInside.push(p); }
+        });
       });
-      if(filters.cuisine!=='all') all=all.filter(p=>cuisineOf(p.name,p.types)===filters.cuisine);
-      all.sort((a,b)=>{const rd=(b.rating||0)-(a.rating||0);return rd!==0?rd:(b.user_ratings_total||0)-(a.user_ratings_total||0);});
+    }
 
-      const inside = all.filter(p=>p._dist<=radius);
-      const featured = all.filter(p=>p._dist>radius&&(p.rating||0)>=4.5).slice(0,5);
-
-      // Search parkings with larger radius
-      placesService.nearbySearch({
-        location:new google.maps.LatLng(lat,lng),
-        radius:Math.min(radius+1500,50000),
-        type:'parking', language:'zh-TW',
-      }, (parks)=>renderResults(inside,featured,parks||[],lat,lng,div,radius));
+    // Featured (beyond radius, high rated)
+    const featResults = await Promise.all(keywords.slice(0,3).map(kw => searchFeatured(lat,lng,kw,searchRadius)));
+    const featSeen = new Set([...seen]);
+    featResults.forEach(list => {
+      list.forEach(p => {
+        if (!featSeen.has(p.place_id) && matchesCuisineFilter(p.name,p.types)) {
+          featSeen.add(p.place_id); allFeatured.push(p);
+        }
+      });
     });
+
+    // Apply cuisine filter to inside results
+    if (selectedCuisines.size > 0) {
+      allInside = allInside.filter(p => matchesCuisineFilter(p.name,p.types));
+    }
+
+    // Sort by distance first, then rating
+    allInside.sort((a,b) => a._dist - b._dist);
+    allFeatured.sort((a,b) => (b.rating||0)-(a.rating||0));
+
+    const parks = await searchParkings(lat, lng, searchRadius);
+    renderResults(allInside, allFeatured.slice(0,5), parks, lat, lng, div);
+    btn.disabled = false;
   };
 
   if (locVal) {
-    geocoder.geocode({address:locVal,language:'zh-TW'},(res,st)=>{
-      if(st==='OK'&&res[0]){
+    geocoder.geocode({address:locVal,language:'zh-TW'}, (res,st) => {
+      if (st==='OK'&&res[0]) {
         localStorage.setItem('last_loc_text',locVal);
         go(res[0].geometry.location.lat(),res[0].geometry.location.lng());
       } else {
         div.innerHTML=`<div class="empty"><span class="empty-icon">📍</span>找不到此地址<small>請重新輸入</small></div>`;
+        btn.disabled=false;
       }
     });
   } else if (currentLat) {
     go(currentLat, currentLng);
   } else {
     div.innerHTML=`<div class="empty"><span class="empty-icon">📍</span>請輸入地址或點「定位」</div>`;
+    btn.disabled=false;
   }
 }
 
 // ── Render ──
-function renderResults(inside, featured, parks, lat, lng, div, radius) {
-  if (!inside.length&&!featured.length) {
-    div.innerHTML=`<div class="empty"><span class="empty-icon">🔍</span>${radius}m 內找不到符合條件的餐廳<small>試試放寬範圍或降低最低評分</small></div>`;
+function renderResults(inside, featured, parks, lat, lng, div) {
+  if (!inside.length && !featured.length) {
+    div.innerHTML=`<div class="empty"><span class="empty-icon">🔍</span>${fmtDist(searchRadius)} 內找不到符合條件的餐廳<small>試試放寬範圍、降低評分門檻或減少篩選條件</small></div>`;
     return;
   }
   div.innerHTML='';
   if (inside.length) {
-    div.innerHTML+=`<div class="section-hdr"><h2>附近餐廳</h2><span class="count-badge">${inside.length} 間</span></div>`;
-    inside.forEach((p,i)=>div.appendChild(makeCard(p,parks,lat,lng,`in-${i}`)));
+    const hdr = document.createElement('div');
+    hdr.className='sec-hdr';
+    hdr.innerHTML=`<h2>附近餐廳</h2><span class="badge badge-gold">${inside.length} 間</span>`;
+    div.appendChild(hdr);
+    inside.forEach(p => div.appendChild(makeCard(p,parks)));
   }
   if (featured.length) {
-    div.innerHTML+=`<div class="section-hdr" style="margin-top:20px"><h2>範圍外精選</h2><span class="featured-badge">評分 4.5★+</span></div>`;
-    div.innerHTML+=`<div style="font-size:12px;color:var(--text-3);margin-bottom:10px">距離超過 ${fmtDist(radius)}，但評價極高值得一去</div>`;
-    featured.forEach((p,i)=>{const el=makeCard(p,parks,lat,lng,`ft-${i}`);div.appendChild(el);});
+    const hdr2 = document.createElement('div');
+    hdr2.className='sec-hdr';
+    hdr2.style.marginTop='20px';
+    hdr2.innerHTML=`<h2>範圍外精選</h2><span class="badge badge-purple">4.5★ 以上</span>`;
+    div.appendChild(hdr2);
+    const note = document.createElement('div');
+    note.style.cssText='font-size:12px;color:var(--text-3);margin-bottom:10px;';
+    note.textContent=`距離超過 ${fmtDist(searchRadius)}，但評價極高值得一去`;
+    div.appendChild(note);
+    featured.forEach(p => div.appendChild(makeCard(p,parks)));
   }
 }
 
-function makeCard(p, parks, lat, lng, id) {
+function makeCard(p, parks) {
   const pLat=p.geometry.location.lat(), pLng=p.geometry.location.lng();
-  const d = p._dist || mDist(lat,lng,pLat,pLng);
+  const d = p._dist || 0;
   const c = cuisineOf(p.name,p.types);
   const ci = C_INFO[c]||C_INFO.other;
-  const isOpen = p.opening_hours?(p.opening_hours.isOpen()?'營業中':'已休息'):'';
-  const openCls = p.opening_hours?(p.opening_hours.isOpen()?'po':'pc'):'';
-  const pk = nearestPark(parks,pLat,pLng);
   const photos = p.photos||[];
+  const pk = nearestPark(parks,pLat,pLng);
 
   const card = document.createElement('div');
   card.className='r-card';
-  card.id=`card-${id}`;
+  card._placeId = p.place_id;
+  card._photos = photos;
+  card._pk = pk;
+  card._place = p;
+  card._dist = d;
 
   let thumbHtml;
   if (photos.length>0) {
-    thumbHtml=`<div class="r-thumb"><img src="${photos[0].getUrl({maxWidth:600,maxHeight:200})}" loading="lazy"/><div class="r-thumb-overlay"></div>${p.rating?`<div class="r-thumb-score">★ ${p.rating.toFixed(1)}</div>`:''}</div>`;
+    thumbHtml=`<div class="r-thumb">
+      <img src="${photos[0].getUrl({maxWidth:600,maxHeight:220})}" loading="lazy"/>
+      <div class="r-thumb-overlay"></div>
+      ${p.rating?`<div class="r-score-badge">★ ${p.rating.toFixed(1)}</div>`:''}
+    </div>`;
   } else {
-    thumbHtml=`<div class="r-thumb"><div class="no-thumb"><span>${ci.emoji}</span>暫無照片</div>${p.rating?`<div class="r-thumb-score">★ ${p.rating.toFixed(1)}</div>`:''}</div>`;
+    thumbHtml=`<div class="r-thumb">
+      <div class="no-thumb"><span>${ci.emoji}</span><span style="font-size:12px">暫無照片</span></div>
+      ${p.rating?`<div class="r-score-badge">★ ${p.rating.toFixed(1)}</div>`:''}
+    </div>`;
   }
 
   card.innerHTML=`${thumbHtml}
   <div class="r-body">
     <div class="r-name">${p.name}</div>
     <div class="r-pills">
-      <span class="pill pg">${fmtDist(d)}</span>
-      ${isOpen?`<span class="pill ${openCls}">${isOpen}</span>`:''}
+      <span class="pill pg">📍 ${fmtDist(d)}</span>
       ${p.user_ratings_total?`<span class="pill pg">${p.user_ratings_total.toLocaleString()} 評</span>`:''}
       <span class="pill ${ci.cls}">${ci.emoji} ${ci.label}</span>
     </div>
     <div class="r-addr-line">${p.vicinity||''}</div>
-    <div class="r-hint">點擊查看詳情、照片與評論 →</div>
+    <div class="r-tap-hint">點擊查看詳情、照片與評論 →</div>
   </div>`;
 
-  card._photos=photos; card._pk=pk; card._place=p; card._dist=d;
-  card.onclick=()=>openDetail(card);
+  card.onclick = () => openDetail(card);
   return card;
 }
 
-// ── Detail sheet ──
+// ── Detail ──
 function openDetail(card) {
   const p=card._place, pk=card._pk, photos=card._photos, d=card._dist;
-  const c=cuisineOf(p.name,p.types);
-  const ci=C_INFO[c]||C_INFO.other;
-  const isOpen=p.opening_hours?(p.opening_hours.isOpen()?'營業中':'已休息'):'';
-  const openCls=p.opening_hours?(p.opening_hours.isOpen()?'po':'pc'):'';
+  const c=cuisineOf(p.name,p.types), ci=C_INFO[c]||C_INFO.other;
   const mapsUrl=`https://www.google.com/maps/place/?q=place_id:${p.place_id}`;
   const navUrl=`https://www.google.com/maps/dir/?api=1&destination=${p.geometry.location.lat()},${p.geometry.location.lng()}`;
 
   let photoHtml;
   if (photos.length>0) {
-    photoHtml=`<div class="detail-photos" id="dp-wrap">
-      <img id="dp-img" src="${photos[0].getUrl({maxWidth:800,maxHeight:400})}" alt="餐廳照片"/>
-      <button class="detail-close" onclick="closeDetailSheet()">✕</button>
-      <div class="detail-photo-nav">
+    photoHtml=`<div class="d-photos">
+      <img id="dp-img" src="${photos[0].getUrl({maxWidth:800,maxHeight:340})}" alt="照片"/>
+      <button class="d-close" onclick="closeDetailSheet()">✕</button>
+      <div class="d-photo-arrows">
         ${photos.length>1?`<button class="d-arrow" onclick="dpNav(-1)">‹</button>`:'<div></div>'}
         ${photos.length>1?`<button class="d-arrow" onclick="dpNav(1)">›</button>`:'<div></div>'}
       </div>
-      ${photos.length>1?`<div class="detail-photo-count" id="dp-count">1 / ${photos.length}</div>`:''}
+      ${photos.length>1?`<div class="d-photo-cnt" id="dp-cnt">1 / ${photos.length}</div>`:''}
     </div>`;
   } else {
-    photoHtml=`<div class="detail-photos" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--text-3)">
-      <button class="detail-close" onclick="closeDetailSheet()">✕</button>
-      <span style="font-size:48px">${ci.emoji}</span><span style="font-size:13px">暫無照片</span>
+    photoHtml=`<div class="d-photos" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--text-3)">
+      <button class="d-close" onclick="closeDetailSheet()">✕</button>
+      <span style="font-size:52px">${ci.emoji}</span>
+      <span style="font-size:13px">暫無照片</span>
     </div>`;
   }
 
-  let pkHtml='';
+  let pkHtml='<div style="font-size:13px;color:var(--text-3)">附近未找到停車場資訊</div>';
   if (pk) {
     const pkNav=`https://www.google.com/maps/dir/?api=1&destination_place_id=${pk.placeId}`;
-    pkHtml=`<div class="pk-detail-block">
-      <div class="pk-detail-name">🅿️ ${pk.name}</div>
-      <div class="pk-detail-info">
+    pkHtml=`<div class="pk-block">
+      <div class="pk-name">🅿️ ${pk.name}</div>
+      <div class="pk-info">
         📍 ${pk.vicinity}<br>
-        ${pk.rating?`⭐ ${pk.rating.toFixed(1)}　`:''}🚶 距餐廳 ${fmtDist(pk.dist)}　${pk.openNow!==undefined?(pk.openNow?'✅ 營業中':'❌ 已休息'):''}
+        ${pk.rating?`⭐ ${pk.rating.toFixed(1)}　`:''}🚶 距此餐廳 ${fmtDist(pk.dist)}
       </div>
       <button class="pk-nav-btn" onclick="window.open('${pkNav}','_blank')">▶ 導航至停車場</button>
     </div>`;
@@ -992,78 +867,115 @@ function openDetail(card) {
 
   document.getElementById('detailContent').innerHTML=`
     ${photoHtml}
-    <div class="detail-body">
-      <div class="detail-name">${p.name}</div>
-      <div class="detail-rating-row">
-        ${p.rating?`<div class="detail-score">★ ${p.rating.toFixed(1)}</div>`:''}
-        ${p.user_ratings_total?`<div class="detail-reviews-count">${p.user_ratings_total.toLocaleString()} 則評論</div>`:''}
+    <div class="d-body">
+      <div class="d-name">${p.name}</div>
+      <div class="d-rating-row">
+        ${p.rating?`<div class="d-score">★ ${p.rating.toFixed(1)}</div>`:''}
+        ${p.user_ratings_total?`<div class="d-rev-count">${p.user_ratings_total.toLocaleString()} 則評論</div>`:''}
+        <div class="d-open-tag" id="d-open-tag" style="display:none"></div>
       </div>
-      <div class="detail-pills">
-        <span class="pill pg">${fmtDist(d)}</span>
-        ${isOpen?`<span class="pill ${openCls}">${isOpen}</span>`:''}
+      <div class="d-pills" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;">
+        <span class="pill pg">📍 ${fmtDist(d)}</span>
         <span class="pill ${ci.cls}">${ci.emoji} ${ci.label}</span>
       </div>
-      <div class="detail-addr">📍 <span id="d-addr">${p.vicinity||'載入中...'}</span></div>
-      <div class="detail-section-title">停車場資訊</div>
-      ${pkHtml||'<div style="font-size:13px;color:var(--text-3)">附近未找到停車場資訊</div>'}
-      <div class="detail-section-title">用戶評論</div>
-      <div id="d-reviews"><div style="font-size:13px;color:var(--text-3)">載入中...</div></div>
-      <div class="detail-actions">
-        <button class="detail-act" onclick="window.open('${mapsUrl}','_blank')">🗺 Maps</button>
-        <button class="detail-act primary" onclick="window.open('${navUrl}','_blank')">▶ 導航前往</button>
+      <div class="d-section">地址</div>
+      <div class="d-addr">📍 <span id="d-addr">${p.vicinity||'載入中...'}</span></div>
+      <div class="d-section">停車場資訊</div>
+      ${pkHtml}
+      <div class="d-section">用戶評論</div>
+      <div id="d-reviews"><div style="font-size:13px;color:var(--text-3);padding:8px 0">評論載入中...</div></div>
+      <div class="d-actions">
+        <button class="d-act" onclick="window.open('${mapsUrl}','_blank')">🗺 地圖</button>
+        <button class="d-act primary" onclick="window.open('${navUrl}','_blank')">▶ 導航前往</button>
       </div>
     </div>`;
 
-  // Store photo state
-  window._dpPhotos=photos; window._dpIdx=0;
+  dpPhotos=photos; dpIdx=0;
   document.getElementById('detailBg').classList.add('show');
   document.getElementById('detailSheet').scrollTop=0;
 
-  // Load details
-  placesService.getDetails({placeId:p.place_id,fields:['formatted_address','reviews'],language:'zh-TW'},(det,st)=>{
-    if(st==='OK'&&det){
-      if(det.formatted_address){
-        const el=document.getElementById('d-addr');
-        if(el) el.textContent=det.formatted_address.replace('台灣','').trim();
+  // Load full details: address + opening_hours + reviews + more photos
+  placesService.getDetails({
+    placeId: p.place_id,
+    fields: ['formatted_address','opening_hours','reviews','photos'],
+    language: 'zh-TW',
+  }, (det,st) => {
+    if (st!=='OK'||!det) return;
+
+    // Full address
+    if (det.formatted_address) {
+      const el=document.getElementById('d-addr');
+      if (el) el.textContent=det.formatted_address.replace(/^台灣/,'').trim();
+    }
+
+    // Opening hours — use complete data from getDetails
+    if (det.opening_hours) {
+      const tag=document.getElementById('d-open-tag');
+      if (tag) {
+        const open = det.opening_hours.isOpen();
+        tag.textContent = open ? '✅ 現在營業中' : '❌ 現在休息中';
+        tag.className = 'd-open-tag ' + (open?'open':'closed');
+        tag.style.display='';
       }
-      const rvDiv=document.getElementById('d-reviews');
-      if(!rvDiv) return;
-      if(!det.reviews?.length){rvDiv.innerHTML='<div style="font-size:13px;color:var(--text-3)">暫無評論</div>';return;}
-      const reviews=det.reviews;
-      const high=reviews.filter(r=>r.rating>=4);
-      const low=reviews.filter(r=>r.rating<=2);
-      const shown=[...high.slice(0,2),...low.slice(0,1)];
-      const rest=reviews.filter(r=>!shown.includes(r));
-      const mkRv=r=>{
-        const stars='★'.repeat(r.rating)+'☆'.repeat(5-r.rating);
-        const text=(r.text||'').length>160?r.text.slice(0,160)+'…':(r.text||'（無文字評論）');
-        return `<div class="rv-item ${rcls(r.rating)}"><div class="rv-meta"><span class="rv-author">${r.author_name}</span><span class="rv-stars">${stars}</span><span class="rv-time">${r.relative_time_description||''}</span></div><div class="rv-text">${text}</div></div>`;
+    }
+
+    // More photos from getDetails
+    if (det.photos&&det.photos.length>photos.length) {
+      dpPhotos=det.photos;
+      const cnt=document.getElementById('dp-cnt');
+      if (cnt) cnt.textContent=`1 / ${dpPhotos.length}`;
+    }
+
+    // Reviews
+    const rvDiv=document.getElementById('d-reviews');
+    if (!rvDiv) return;
+    if (!det.reviews?.length) {
+      rvDiv.innerHTML='<div style="font-size:13px;color:var(--text-3)">暫無評論</div>';
+      return;
+    }
+    const reviews=det.reviews;
+    const high=reviews.filter(r=>r.rating>=4);
+    const low=reviews.filter(r=>r.rating<=2);
+    const shown=[...high.slice(0,2),...low.slice(0,1)];
+    const rest=reviews.filter(r=>!shown.includes(r));
+
+    const mkRv=r=>{
+      const stars='★'.repeat(r.rating)+'☆'.repeat(5-r.rating);
+      const text=(r.text||'').length>160?r.text.slice(0,160)+'…':(r.text||'（無文字評論）');
+      const cls=r.rating>=4?'rv-high':r.rating<=2?'rv-low':'rv-mid';
+      return `<div class="rv-item ${cls}">
+        <div class="rv-meta">
+          <span class="rv-author">${r.author_name}</span>
+          <span class="rv-stars">${stars}</span>
+          <span class="rv-time">${r.relative_time_description||''}</span>
+        </div>
+        <div class="rv-text">${text}</div>
+      </div>`;
+    };
+
+    let html=shown.map(mkRv).join('');
+    if(rest.length) html+=`<button class="rv-more-btn" id="rv-more-btn">▼ 顯示更多（${rest.length} 則）</button>`;
+    rvDiv.innerHTML=html;
+    if(rest.length) {
+      document.getElementById('rv-more-btn').onclick=function(){
+        this.remove();
+        rest.forEach(r=>{ rvDiv.insertAdjacentHTML('beforeend',mkRv(r)); });
       };
-      let html=shown.map(mkRv).join('');
-      if(rest.length) html+=`<button class="rv-more-btn" id="rv-more-btn">▼ 顯示更多（${rest.length} 則）</button>`;
-      rvDiv.innerHTML=html;
-      if(rest.length){
-        document.getElementById('rv-more-btn').onclick=function(){
-          this.remove();
-          rest.forEach(r=>{rvDiv.insertAdjacentHTML('beforeend',mkRv(r));});
-        };
-      }
     }
   });
 }
 
 function dpNav(dir) {
-  const photos=window._dpPhotos;
-  if(!photos||photos.length<=1) return;
-  window._dpIdx=(window._dpIdx+dir+photos.length)%photos.length;
+  if (!dpPhotos||dpPhotos.length<=1) return;
+  dpIdx=(dpIdx+dir+dpPhotos.length)%dpPhotos.length;
   const img=document.getElementById('dp-img');
-  if(img){img.style.opacity='0';setTimeout(()=>{img.src=photos[window._dpIdx].getUrl({maxWidth:800,maxHeight:400});img.style.opacity='1';},250);}
-  const cnt=document.getElementById('dp-count');
-  if(cnt) cnt.textContent=`${window._dpIdx+1} / ${photos.length}`;
+  if(img){img.style.opacity='0';setTimeout(()=>{img.src=dpPhotos[dpIdx].getUrl({maxWidth:800,maxHeight:340});img.style.opacity='1';},250);}
+  const cnt=document.getElementById('dp-cnt');
+  if(cnt) cnt.textContent=`${dpIdx+1} / ${dpPhotos.length}`;
 }
 
 function closeDetailSheet() { document.getElementById('detailBg').classList.remove('show'); }
-function closeDetail(e) { if(e.target===document.getElementById('detailBg')) closeDetailSheet(); }
+function closeDetailOutside(e) { if(e.target===document.getElementById('detailBg')) closeDetailSheet(); }
 </script>
 </body>
 </html>
