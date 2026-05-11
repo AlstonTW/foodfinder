@@ -11,38 +11,32 @@
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>尋味</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* ══ TOKENS ══ */
 [data-theme="light"]{
-  --bg:#f6f4ef; --bg2:#eceae3; --surface:#ffffff; --surface2:#f0ede5; --surface3:#e5e1d7;
-  --border:rgba(20,16,8,.07); --border-md:rgba(20,16,8,.13); --border-strong:rgba(20,16,8,.22);
-  --text:#141008; --text2:#5c5444; --text3:#a09070; --inv:#f6f4ef;
-  --ink:#141008; --ink2:#5c5444;
-  --gold:#8a6508; --gold-l:#faf2dc; --gold-b:#d4aa40; --gold-vl:#fffbf0;
-  --green:#1e5030; --green-l:#e8f4ec; --green-b:#70b888;
-  --red:#7a2020; --red-l:#fdf0ee; --red-b:#c07070;
-  --blue:#1a3868; --blue-l:#e8f0fc; --blue-b:#7090d0;
-  --purple:#42207a; --purple-l:#f0eafc; --purple-b:#9060d8;
-  --sh0:0 1px 2px rgba(0,0,0,.05); --sh1:0 2px 8px rgba(0,0,0,.07),0 4px 18px rgba(0,0,0,.04);
-  --sh2:0 6px 20px rgba(0,0,0,.10),0 16px 40px rgba(0,0,0,.06);
+  --bg:#f6f4ef;--bg2:#eceae3;--surface:#fff;--surface2:#f0ede5;--surface3:#e5e1d7;
+  --border:rgba(20,16,8,.07);--border-md:rgba(20,16,8,.13);--border-strong:rgba(20,16,8,.22);
+  --text:#141008;--text2:#5c5444;--text3:#a09070;--inv:#f6f4ef;
+  --ink:#141008;--gold:#8a6508;--gold-l:#faf2dc;--gold-b:#d4aa40;
+  --green:#1e5030;--green-l:#e8f4ec;--green-b:#70b888;
+  --red:#7a2020;--red-l:#fdf0ee;--red-b:#c07070;
+  --blue:#1a3868;--blue-l:#e8f0fc;--blue-b:#7090d0;
+  --purple:#42207a;--purple-l:#f0eafc;--purple-b:#9060d8;
+  --sh1:0 2px 8px rgba(0,0,0,.07),0 4px 18px rgba(0,0,0,.04);
   --overlay:rgba(8,6,2,.58);
 }
 [data-theme="dark"]{
-  --bg:#0c0b09; --bg2:#141210; --surface:#181612; --surface2:#201e18; --surface3:#282420;
-  --border:rgba(255,248,224,.06); --border-md:rgba(255,248,224,.12); --border-strong:rgba(255,248,224,.22);
-  --text:#f0ece0; --text2:#a09070; --text3:#5c5038; --inv:#0c0b09;
-  --ink:#f0ece0; --ink2:#a09070;
-  --gold:#c8a030; --gold-l:#241e08; --gold-b:#6a5010; --gold-vl:#1c1808;
-  --green:#30784a; --green-l:#0c1a10; --green-b:#1a4028;
-  --red:#a84040; --red-l:#1a0c0c; --red-b:#502020;
-  --blue:#3860b0; --blue-l:#0c1020; --blue-b:#1a2848;
-  --purple:#6840b8; --purple-l:#140c28; --purple-b:#30185c;
-  --sh0:0 1px 2px rgba(0,0,0,.3); --sh1:0 2px 8px rgba(0,0,0,.4),0 4px 18px rgba(0,0,0,.3);
-  --sh2:0 6px 20px rgba(0,0,0,.5),0 16px 40px rgba(0,0,0,.4);
+  --bg:#0c0b09;--bg2:#141210;--surface:#181612;--surface2:#201e18;--surface3:#282420;
+  --border:rgba(255,248,224,.06);--border-md:rgba(255,248,224,.12);--border-strong:rgba(255,248,224,.22);
+  --text:#f0ece0;--text2:#a09070;--text3:#5c5038;--inv:#0c0b09;
+  --ink:#f0ece0;--gold:#c8a030;--gold-l:#241e08;--gold-b:#6a5010;
+  --green:#30784a;--green-l:#0c1a10;--green-b:#1a4028;
+  --red:#a84040;--red-l:#1a0c0c;--red-b:#502020;
+  --blue:#3860b0;--blue-l:#0c1020;--blue-b:#1a2848;
+  --purple:#6840b8;--purple-l:#140c28;--purple-b:#30185c;
+  --sh1:0 2px 8px rgba(0,0,0,.4),0 4px 18px rgba(0,0,0,.3);
   --overlay:rgba(0,0,0,.78);
 }
-/* cuisine tints */
 [data-cuisine*="japanese"]{--tint:#f3ede0;} [data-theme="dark"][data-cuisine*="japanese"]{--tint:#1a1608;}
 [data-cuisine*="western"]{--tint:#eaeff8;} [data-theme="dark"][data-cuisine*="western"]{--tint:#0c1018;}
 [data-cuisine*="western_american"]{--tint:#ede8f8;} [data-theme="dark"][data-cuisine*="western_american"]{--tint:#100c1c;}
@@ -53,232 +47,109 @@
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;overflow:hidden;}
-body{
-  font-family:'Noto Sans TC',-apple-system,sans-serif;
-  background:var(--tint,var(--bg));color:var(--text);
-  display:flex;flex-direction:column;transition:background .6s;
-}
+body{font-family:'Noto Sans TC',-apple-system,sans-serif;background:var(--tint,var(--bg));color:var(--text);display:flex;flex-direction:column;transition:background .6s;}
 
-/* ══ TOPBAR — magazine style ══ */
-.topbar{
-  background:var(--bg);
-  border-bottom:2px solid var(--ink);
-  padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
-  flex-shrink:0;
-}
+/* TOPBAR */
+.topbar{background:var(--bg);border-bottom:2px solid var(--ink);padding:calc(10px + env(safe-area-inset-top)) 16px 10px;flex-shrink:0;}
 .topbar-inner{display:flex;align-items:flex-end;justify-content:space-between;}
-.brand-block{}
-.brand-kicker{
-  font-family:'Noto Sans TC',sans-serif;
-  font-size:9px;font-weight:500;letter-spacing:.25em;
-  text-transform:uppercase;color:var(--gold);
-  margin-bottom:3px;
-}
-.brand-name{
-  font-family:'Playfair Display',serif;
-  font-size:30px;font-weight:700;letter-spacing:-.5px;
-  color:var(--text);line-height:1;
-}
-.brand-tagline{
-  font-family:'Playfair Display',serif;
-  font-size:11px;font-style:italic;color:var(--text2);
-  margin-top:2px;
-}
+.brand-kicker{font-size:9px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.brand-name{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;letter-spacing:-.5px;color:var(--text);line-height:1;}
+.brand-tagline{font-family:'Playfair Display',serif;font-size:11px;font-style:italic;color:var(--text2);margin-top:2px;}
 .topbar-r{display:flex;gap:6px;align-items:center;padding-bottom:2px;}
 .api-dot{width:7px;height:7px;border-radius:50%;background:var(--border-md);transition:all .4s;}
 .api-dot.ok{background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.2);}
-.icon-btn{
-  width:34px;height:34px;border-radius:50%;
-  border:1px solid var(--border-md);background:transparent;
-  color:var(--text2);font-size:15px;
-  display:flex;align-items:center;justify-content:center;cursor:pointer;
-  transition:all .15s;
-}
+.icon-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border-md);background:transparent;color:var(--text2);font-size:15px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;}
 .icon-btn:active{transform:scale(.9);}
 
-/* ══ SCROLL ══ */
-.scroll-area{
-  flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
-  padding:0 0 calc(86px + env(safe-area-inset-bottom));
-}
+/* SCROLL */
+.scroll-area{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 0 calc(86px + env(safe-area-inset-bottom));}
 
-/* ══ FILTER PANEL — editorial block ══ */
-.filter-panel{
-  background:var(--surface);
-  border-bottom:1px solid var(--border-md);
-  padding:16px;
-}
-.fp-row{margin-bottom:14px;}
+/* FILTER PANEL */
+.filter-panel{background:var(--surface);border-bottom:1px solid var(--border-md);padding:14px 16px;}
+.fp-row{margin-bottom:13px;}
 .fp-row:last-child{margin-bottom:0;}
-.fp-label{
-  font-size:9px;font-weight:500;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--text3);
-  margin-bottom:8px;display:flex;align-items:center;gap:8px;
-}
+.fp-label{font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:7px;display:flex;align-items:center;gap:8px;}
 .fp-label::after{content:'';flex:1;height:1px;background:var(--border);}
 
+/* CHIPS */
 .chips{display:flex;flex-wrap:wrap;gap:5px;}
-.chip{
-  height:30px;padding:0 12px;border-radius:2px;
-  border:1px solid var(--border-md);background:transparent;
-  color:var(--text2);font-size:12px;
-  font-family:'Noto Sans TC',sans-serif;
-  cursor:pointer;display:flex;align-items:center;gap:4px;
-  white-space:nowrap;transition:all .15s;letter-spacing:.01em;
-}
+.chip{height:30px;padding:0 12px;border-radius:2px;border:1px solid var(--border-md);background:transparent;color:var(--text2);font-size:12px;font-family:'Noto Sans TC',sans-serif;cursor:pointer;display:flex;align-items:center;gap:4px;white-space:nowrap;transition:all .15s;letter-spacing:.01em;}
 .chip:active{transform:scale(.95);}
-.chip.on{
-  background:var(--ink);border-color:var(--ink);
-  color:var(--inv);font-weight:500;
-}
+.chip.on{background:var(--ink);border-color:var(--ink);color:var(--inv);font-weight:500;}
 
-/* slider */
-.sl-wrap{display:flex;align-items:center;gap:12px;}
-.sl-wrap label{font-size:12px;color:var(--text2);white-space:nowrap;min-width:48px;}
-input[type=range]{flex:1;accent-color:var(--gold);cursor:pointer;height:3px;}
+/* PRICE CHIPS */
+.price-chip{height:30px;padding:0 12px;border-radius:2px;border:1px solid var(--border-md);background:transparent;color:var(--text2);font-size:13px;font-family:'Noto Sans TC',sans-serif;cursor:pointer;white-space:nowrap;transition:all .15s;letter-spacing:.05em;}
+.price-chip:active{transform:scale(.95);}
+.price-chip.on{background:var(--gold-l);border-color:var(--gold-b);color:var(--gold);font-weight:700;}
+
+.divl{border-top:1px solid var(--border);margin:12px 0;}
+.sl-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+.sl-row label{font-size:12px;color:var(--text2);white-space:nowrap;min-width:52px;}
+input[type=range]{flex:1;accent-color:var(--gold);cursor:pointer;}
 .sl-val{font-size:13px;font-weight:500;color:var(--gold);min-width:52px;text-align:right;}
 
-/* star / sort row */
-.inline-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.inline-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
 .inline-row label{font-size:12px;color:var(--text2);white-space:nowrap;}
 .mini-btns{display:flex;gap:4px;flex-wrap:wrap;}
-.mini-btn{
-  height:26px;padding:0 10px;border-radius:2px;
-  border:1px solid var(--border-md);background:transparent;
-  font-size:11px;color:var(--text2);
-  font-family:'Noto Sans TC',sans-serif;cursor:pointer;
-  transition:all .15s;
-}
+.mini-btn{height:26px;padding:0 10px;border-radius:2px;border:1px solid var(--border-md);background:transparent;font-size:11px;color:var(--text2);font-family:'Noto Sans TC',sans-serif;cursor:pointer;transition:all .15s;}
 .mini-btn.on{background:var(--gold-l);border-color:var(--gold-b);color:var(--gold);font-weight:600;}
+.mini-btn[data-s].on{background:var(--ink);border-color:var(--ink);color:var(--inv);}
 
-.open-toggle{
-  display:flex;align-items:center;gap:7px;
-  cursor:pointer;user-select:none;
-}
-.toggle-track{
-  width:36px;height:20px;border-radius:10px;
-  background:var(--surface3);border:1px solid var(--border-md);
-  position:relative;transition:background .2s;flex-shrink:0;
-}
+/* TOGGLE */
+.toggle-row{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;}
+.toggle-track{width:36px;height:20px;border-radius:10px;background:var(--surface3);border:1px solid var(--border-md);position:relative;transition:background .2s;flex-shrink:0;}
 .toggle-track.on{background:var(--green);border-color:var(--green);}
-.toggle-thumb{
-  width:14px;height:14px;border-radius:50%;background:#fff;
-  position:absolute;top:2px;left:2px;transition:left .2s;
-  box-shadow:0 1px 3px rgba(0,0,0,.2);
-}
+.toggle-thumb{width:14px;height:14px;border-radius:50%;background:#fff;position:absolute;top:2px;left:2px;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
 .toggle-track.on .toggle-thumb{left:18px;}
 .toggle-label{font-size:12px;color:var(--text2);}
 
-/* ══ SEARCH BAR ══ */
-.search-bar{
-  position:fixed;bottom:0;left:0;right:0;
-  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
-  background:var(--bg);border-top:2px solid var(--ink);
-  z-index:10;
-}
-.btn-search{
-  width:100%;height:48px;
-  background:var(--ink);color:var(--inv);border:none;
-  border-radius:2px;font-size:14px;font-weight:500;
-  font-family:'Playfair Display',serif;letter-spacing:.08em;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;
-  transition:opacity .15s;
-}
+/* SEARCH BAR */
+.search-bar{position:fixed;bottom:0;left:0;right:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:var(--bg);border-top:2px solid var(--ink);z-index:10;}
+.btn-search{width:100%;height:48px;background:var(--ink);color:var(--inv);border:none;border-radius:2px;font-size:14px;font-weight:500;font-family:'Playfair Display',serif;letter-spacing:.08em;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:opacity .15s;}
 .btn-search:active{opacity:.8;}
 .btn-search:disabled{opacity:.38;cursor:not-allowed;}
 
-/* ══ RESULTS ══ */
+/* RESULTS */
 .results-area{padding:0 14px;}
-.sec-hdr{
-  display:flex;align-items:baseline;gap:10px;
-  padding:18px 0 10px;
-  border-bottom:1px solid var(--border);margin-bottom:14px;
-}
-.sec-title{
-  font-family:'Playfair Display',serif;
-  font-size:20px;font-weight:700;color:var(--text);
-}
-.sec-count{
-  font-size:11px;color:var(--text3);
-  font-family:'Noto Sans TC',sans-serif;letter-spacing:.05em;
-}
-.sec-pill{
-  margin-left:auto;font-size:10px;padding:2px 9px;
-  border-radius:1px;border:1px solid;
-  font-family:'Noto Sans TC',sans-serif;letter-spacing:.06em;
-}
+.sec-hdr{display:flex;align-items:baseline;gap:10px;padding:16px 0 10px;border-bottom:1px solid var(--border);margin-bottom:13px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);}
+.sec-count{font-size:11px;color:var(--text3);font-family:'Noto Sans TC',sans-serif;}
+.sec-pill{margin-left:auto;font-size:10px;padding:2px 9px;border-radius:1px;border:1px solid;font-family:'Noto Sans TC',sans-serif;letter-spacing:.05em;}
 .sp-gold{background:var(--gold-l);color:var(--gold);border-color:var(--gold-b);}
 .sp-purple{background:var(--purple-l);color:var(--purple);border-color:var(--purple-b);}
+.sp-green{background:var(--green-l);color:var(--green);border-color:var(--green-b);}
 
-/* ══ RESULT CARD — magazine style ══ */
-.r-card{
-  background:var(--surface);
-  border:1px solid var(--border);
-  margin-bottom:14px;cursor:pointer;
-  transition:transform .18s,box-shadow .18s;
-  position:relative;overflow:hidden;
-  box-shadow:var(--sh1);
-}
+/* SESSION HISTORY STRIP */
+.history-strip{padding:12px 14px 0;}
+.history-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.history-title{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);}
+.history-clear{font-size:11px;color:var(--red);background:none;border:none;cursor:pointer;font-family:'Noto Sans TC',sans-serif;}
+.history-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch;}
+.history-scroll::-webkit-scrollbar{display:none;}
+.history-card{flex-shrink:0;width:130px;background:var(--surface);border:1px solid var(--border-md);border-radius:2px;padding:9px 10px;cursor:pointer;transition:all .15s;}
+.history-card:active{transform:scale(.96);}
+.history-card-name{font-size:12px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:3px;}
+.history-card-meta{font-size:10px;color:var(--text3);}
+
+/* RESULT CARD */
+.r-card{background:var(--surface);border:1px solid var(--border);margin-bottom:13px;cursor:pointer;transition:transform .18s;position:relative;overflow:hidden;box-shadow:var(--sh1);}
 .r-card:active{transform:scale(.985);}
-
-/* photo — full bleed, tall */
-.r-photo{
-  position:relative;height:190px;
-  background:var(--surface2);overflow:hidden;
-}
+.r-photo{position:relative;height:185px;background:var(--surface2);overflow:hidden;}
 .r-photo img{width:100%;height:100%;object-fit:cover;display:block;}
-.r-photo-grad{
-  position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,0) 30%,rgba(0,0,0,.65) 100%);
-}
-/* score — top right */
-.r-score{
-  position:absolute;top:10px;right:10px;
-  background:rgba(0,0,0,.52);backdrop-filter:blur(6px);
-  color:#fff;font-size:14px;font-weight:700;
-  padding:5px 11px;border-radius:1px;
-  font-family:'Playfair Display',serif;
-  display:flex;align-items:center;gap:3px;
-}
-/* name overlaid bottom of photo */
-.r-photo-name{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:14px 13px 11px;
-}
-.r-photo-kicker{
-  font-size:9px;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.7);margin-bottom:4px;
-  font-family:'Noto Sans TC',sans-serif;
-}
-.r-photo-title{
-  font-family:'Playfair Display',serif;
-  font-size:18px;font-weight:700;color:#fff;
-  line-height:1.25;
-}
-/* fav btn */
-.r-fav{
-  position:absolute;top:10px;left:10px;z-index:3;
-  width:30px;height:30px;border-radius:50%;
-  background:rgba(0,0,0,.38);backdrop-filter:blur(4px);
-  border:none;color:rgba(255,255,255,.7);font-size:14px;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all .15s;
-}
-.r-fav.saved{background:rgba(160,30,30,.7);color:#fff;}
-.r-fav:active{transform:scale(.85);}
-/* no photo */
-.r-no-photo{
-  width:100%;height:100%;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:6px;color:var(--text3);
-}
-.r-no-photo span{font-size:36px;}
-/* card info strip */
-.r-strip{
-  padding:11px 13px 13px;
-  border-top:1px solid var(--border);
-  display:grid;grid-template-columns:1fr auto;gap:6px 12px;
-}
+.r-photo-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 30%,rgba(0,0,0,.65) 100%);}
+.r-score{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.52);backdrop-filter:blur(6px);color:#fff;font-size:14px;font-weight:700;padding:5px 11px;border-radius:1px;font-family:'Playfair Display',serif;display:flex;align-items:center;gap:3px;}
+.r-photo-name{position:absolute;bottom:0;left:0;right:0;padding:12px 13px 10px;}
+.r-photo-kicker{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:3px;font-family:'Noto Sans TC',sans-serif;}
+.r-photo-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;line-height:1.25;}
+.r-no-photo{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:var(--text3);}
+.r-no-photo span{font-size:34px;}
+/* select checkbox for spinner */
+.r-select{position:absolute;top:10px;left:10px;z-index:3;width:26px;height:26px;border-radius:2px;background:rgba(0,0,0,.42);backdrop-filter:blur(4px);border:1.5px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;font-size:14px;color:transparent;}
+.r-select.checked{background:var(--gold);border-color:var(--gold);color:#fff;}
+/* price badge on photo */
+.r-price-badge{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.48);backdrop-filter:blur(4px);color:#fff;font-size:12px;font-weight:700;padding:3px 8px;border-radius:1px;letter-spacing:.05em;}
+/* strip */
+.r-strip{padding:10px 12px 12px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr auto;gap:5px 10px;}
 .r-meta{display:flex;flex-wrap:wrap;gap:4px;grid-column:1/-1;}
 .pill{font-size:10px;padding:2px 8px;border-radius:1px;border:1px solid;white-space:nowrap;letter-spacing:.02em;}
 .pg{background:var(--surface2);border-color:var(--border-md);color:var(--text2);}
@@ -292,186 +163,150 @@ input[type=range]{flex:1;accent-color:var(--gold);cursor:pointer;height:3px;}
 .pbr{background:var(--green-l);border-color:var(--green-b);color:var(--green);}
 .pca{background:#f8f0e0;border-color:#c09040;color:#604818;}
 .pam{background:var(--purple-l);border-color:var(--purple-b);color:var(--purple);}
+.pprice{background:var(--gold-l);border-color:var(--gold-b);color:var(--gold);font-weight:600;}
 .r-addr{font-size:11px;color:var(--text3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .r-pk-line{font-size:11px;color:var(--text3);text-align:right;}
-.r-hint{font-size:10px;color:var(--text3);letter-spacing:.04em;grid-column:1/-1;text-align:right;}
+.r-hint{font-size:10px;color:var(--text3);letter-spacing:.03em;grid-column:1/-1;text-align:right;}
 
-/* ══ MODALS ══ */
+/* spinner FAB */
+.spinner-fab{position:fixed;bottom:calc(72px + env(safe-area-inset-bottom));right:16px;z-index:9;width:48px;height:48px;border-radius:50%;background:var(--gold);border:none;color:#fff;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(138,101,8,.4);cursor:pointer;transition:all .2s;display:none;}
+.spinner-fab.show{display:flex;}
+.spinner-fab:active{transform:scale(.9);}
+.spinner-fab-count{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--red);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+
+/* MODAL BASE */
 .modal-bg{display:none;position:fixed;inset:0;background:var(--overlay);z-index:100;align-items:flex-end;}
 .modal-bg.show{display:flex;}
-.modal-sheet{
-  background:var(--surface);width:100%;
-  border-top:2px solid var(--ink);
-  padding:16px 18px calc(26px + env(safe-area-inset-bottom));
-  max-height:85vh;overflow-y:auto;
-}
+.modal-sheet{background:var(--surface);width:100%;border-top:2px solid var(--ink);padding:16px 18px calc(26px + env(safe-area-inset-bottom));max-height:88vh;overflow-y:auto;}
 .m-handle{width:32px;height:3px;background:var(--border-md);border-radius:99px;margin:0 auto 16px;}
 .m-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:6px;}
 .m-desc{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:14px;}
 .m-desc a{color:var(--gold);}
-.m-input{
-  width:100%;height:46px;padding:0 13px;
-  border:1px solid var(--border-md);border-radius:2px;
-  font-size:14px;font-family:monospace;
-  background:var(--surface2);color:var(--text);outline:none;
-  margin-bottom:6px;
-}
+.m-input{width:100%;height:46px;padding:0 13px;border:1px solid var(--border-md);border-radius:2px;font-size:14px;font-family:monospace;background:var(--surface2);color:var(--text);outline:none;margin-bottom:6px;}
 .m-input:focus{border-color:var(--gold);}
 .m-status{font-size:12px;color:var(--text3);min-height:18px;margin-bottom:11px;}
-.m-btn-p{
-  width:100%;height:48px;background:var(--ink);color:var(--inv);
-  border:none;border-radius:2px;font-size:14px;font-weight:500;
-  font-family:'Noto Sans TC',sans-serif;cursor:pointer;margin-bottom:8px;
-}
+.m-btn-p{width:100%;height:48px;background:var(--ink);color:var(--inv);border:none;border-radius:2px;font-size:14px;font-weight:500;font-family:'Noto Sans TC',sans-serif;cursor:pointer;margin-bottom:8px;}
 .m-btn-p:active{opacity:.8;}
-.m-btn-s{
-  width:100%;height:44px;background:transparent;color:var(--text2);
-  border:1px solid var(--border-md);border-radius:2px;
-  font-size:13px;font-family:'Noto Sans TC',sans-serif;cursor:pointer;
-}
+.m-btn-s{width:100%;height:44px;background:transparent;color:var(--text2);border:1px solid var(--border-md);border-radius:2px;font-size:13px;font-family:'Noto Sans TC',sans-serif;cursor:pointer;}
 
-/* ══ DETAIL SHEET ══ */
+/* SEARCH HISTORY DROPDOWN */
+.search-hist-wrap{position:relative;}
+.search-hist-list{position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--border-md);border-top:none;z-index:20;display:none;max-height:180px;overflow-y:auto;}
+.search-hist-list.show{display:block;}
+.hist-item{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;cursor:pointer;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2);}
+.hist-item:last-child{border-bottom:none;}
+.hist-item:hover{background:var(--surface2);}
+.hist-del{background:none;border:none;color:var(--text3);font-size:14px;cursor:pointer;padding:0 4px;}
+
+/* SPINNER WHEEL MODAL */
+.spin-modal{display:none;position:fixed;inset:0;background:var(--overlay);z-index:200;align-items:center;justify-content:center;padding:20px;}
+.spin-modal.show{display:flex;}
+.spin-box{background:var(--surface);border-top:2px solid var(--ink);width:100%;max-width:400px;padding:20px 20px calc(20px + env(safe-area-inset-bottom));max-height:90vh;overflow-y:auto;}
+.spin-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;text-align:center;margin-bottom:4px;}
+.spin-subtitle{font-size:12px;color:var(--text3);text-align:center;margin-bottom:18px;font-style:italic;}
+/* wheel */
+.wheel-wrap{position:relative;width:260px;height:260px;margin:0 auto 20px;}
+.wheel-canvas{border-radius:50%;display:block;}
+.wheel-pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:28px;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+.wheel-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:var(--surface);border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:transform .1s;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+.wheel-center:active{transform:translate(-50%,-50%) scale(.9);}
+/* result */
+.spin-result{background:var(--gold-l);border:2px solid var(--gold-b);padding:14px 16px;margin-bottom:14px;text-align:center;display:none;}
+.spin-result.show{display:block;}
+.spin-result-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.spin-result-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.spin-result-meta{font-size:12px;color:var(--text2);}
+.spin-result-actions{display:flex;gap:8px;margin-top:10px;}
+.spin-act{flex:1;height:38px;border-radius:2px;border:1px solid var(--border-md);background:transparent;font-size:12px;font-weight:500;font-family:'Noto Sans TC',sans-serif;color:var(--text2);cursor:pointer;}
+.spin-act.primary{background:var(--ink);color:var(--inv);border-color:var(--ink);}
+/* selected list */
+.spin-list{margin-bottom:14px;}
+.spin-list-title{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.spin-item{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.spin-item:last-child{border-bottom:none;}
+.spin-item-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.spin-item-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.spin-item-score{font-size:11px;color:var(--text3);}
+.spin-close{width:100%;height:44px;background:transparent;border:1px solid var(--border-md);border-radius:2px;font-size:13px;color:var(--text2);font-family:'Noto Sans TC',sans-serif;cursor:pointer;margin-top:4px;}
+
+/* DETAIL SHEET */
 .detail-bg{display:none;position:fixed;inset:0;background:var(--overlay);z-index:50;align-items:flex-end;}
 .detail-bg.show{display:flex;}
-.detail-sheet{
-  background:var(--surface);width:100%;max-height:94vh;
-  overflow-y:auto;-webkit-overflow-scrolling:touch;
-  border-top:2px solid var(--ink);
-}
-/* photos */
+.detail-sheet{background:var(--surface);border-radius:0;width:100%;max-height:94vh;overflow-y:auto;-webkit-overflow-scrolling:touch;border-top:2px solid var(--ink);}
 .d-photo-wrap{position:relative;height:250px;background:var(--surface2);overflow:hidden;flex-shrink:0;}
 .d-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .28s;}
-.d-photo-grad{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.4) 100%);}
-.d-close{
-  position:absolute;top:13px;right:13px;width:30px;height:30px;
-  border-radius:50%;background:rgba(0,0,0,.48);border:none;
-  color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;
-  cursor:pointer;z-index:5;
-}
+.d-photo-grad{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.38) 100%);}
+.d-close{position:absolute;top:13px;right:13px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.48);border:none;color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;}
 .d-arr-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 10px;pointer-events:none;}
-.d-arr{
-  width:36px;height:36px;border-radius:50%;border:none;
-  background:rgba(0,0,0,.42);color:#fff;font-size:20px;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;pointer-events:all;
-}
+.d-arr{width:36px;height:36px;border-radius:50%;border:none;background:rgba(0,0,0,.42);color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:all;}
 .d-arr:active{background:rgba(0,0,0,.7);}
 .d-photo-cnt{position:absolute;bottom:10px;right:13px;background:rgba(0,0,0,.46);color:#fff;font-size:11px;padding:3px 10px;border-radius:99px;}
 .d-no-photo{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text3);gap:8px;}
 .d-no-photo span{font-size:54px;}
-/* detail body */
-.d-body{padding:18px 16px calc(24px + env(safe-area-inset-bottom));}
-.d-kicker{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
-.d-name{
-  font-family:'Playfair Display',serif;
-  font-size:26px;font-weight:700;color:var(--text);
-  margin-bottom:12px;line-height:1.25;
-}
-.d-score-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
-.d-score{
-  font-family:'Playfair Display',serif;
-  font-size:18px;font-weight:700;color:var(--gold);
-  display:flex;align-items:center;gap:4px;
-}
+.d-body{padding:16px 16px calc(24px + env(safe-area-inset-bottom));}
+.d-kicker{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.d-name{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--text);margin-bottom:10px;line-height:1.25;}
+.d-score-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:9px;}
+.d-score{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);}
 .d-rev-ct{font-size:13px;color:var(--text2);}
-.d-open-badge{
-  font-size:11px;font-weight:500;padding:3px 10px;
-  border-radius:1px;border:1px solid;display:none;letter-spacing:.03em;
-}
+.d-price-tag{font-size:14px;font-weight:700;color:var(--gold);letter-spacing:.05em;}
+.d-open-badge{font-size:11px;font-weight:500;padding:3px 10px;border-radius:1px;border:1px solid;display:none;letter-spacing:.03em;}
 .d-open-badge.open{background:var(--green-l);border-color:var(--green-b);color:var(--green);display:inline-block;}
 .d-open-badge.closed{background:var(--red-l);border-color:var(--red-b);color:var(--red);display:inline-block;}
-.d-divider{border-top:1px solid var(--border);margin:14px 0;}
-.d-sec{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);margin-bottom:9px;}
-.d-hours-box{
-  padding:11px 13px;background:var(--surface2);
-  margin-bottom:10px;font-size:13px;color:var(--text2);line-height:1.6;
-}
-.d-addr-row{display:flex;gap:8px;align-items:flex-start;padding:11px 13px;background:var(--surface2);margin-bottom:8px;}
+.d-divider{border-top:1px solid var(--border);margin:13px 0;}
+.d-sec{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.d-hours-box{padding:10px 12px;background:var(--surface2);margin-bottom:9px;font-size:13px;color:var(--text2);line-height:1.6;}
+.d-addr-row{display:flex;gap:8px;align-items:flex-start;padding:10px 12px;background:var(--surface2);margin-bottom:7px;}
 .d-addr-text{flex:1;font-size:13px;color:var(--text2);line-height:1.6;}
 .d-copy-btn{background:none;border:none;color:var(--text3);font-size:14px;cursor:pointer;padding:2px;flex-shrink:0;}
-.d-share-btn{
-  width:100%;height:38px;
-  background:transparent;border:1px solid var(--border-md);
-  border-radius:2px;color:var(--text2);font-size:13px;
-  font-family:'Noto Sans TC',sans-serif;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:6px;
-  margin-bottom:4px;
-}
-.d-phone-btn{
-  width:100%;height:38px;
-  background:var(--green-l);border:1px solid var(--green-b);
-  border-radius:2px;color:var(--green);font-size:13px;font-weight:500;
-  font-family:'Noto Sans TC',sans-serif;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:6px;
-  margin-bottom:4px;
-}
-/* parking */
-.pk-block{background:var(--surface2);border-left:3px solid var(--blue);padding:12px 13px;margin-top:4px;}
-.pk-name{font-size:14px;font-weight:500;color:var(--text);margin-bottom:5px;}
-.pk-info{font-size:12px;color:var(--text2);line-height:1.85;margin-bottom:9px;}
-.pk-nav-btn{
-  width:100%;height:38px;background:var(--blue-l);border:1px solid var(--blue-b);
-  border-radius:2px;color:var(--blue);font-size:13px;font-weight:500;
-  font-family:'Noto Sans TC',sans-serif;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:5px;
-}
+.d-action-row{display:flex;gap:7px;margin-bottom:6px;}
+.d-sm-btn{flex:1;height:36px;border-radius:2px;border:1px solid var(--border-md);background:transparent;font-size:12px;font-weight:500;font-family:'Noto Sans TC',sans-serif;color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;}
+.d-sm-btn.green{background:var(--green-l);border-color:var(--green-b);color:var(--green);}
+.d-sm-btn:active{opacity:.75;}
+.pk-block{background:var(--surface2);border-left:3px solid var(--blue);padding:11px 12px;margin-top:3px;}
+.pk-name{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px;}
+.pk-info{font-size:12px;color:var(--text2);line-height:1.85;margin-bottom:8px;}
+.pk-nav-btn{width:100%;height:36px;background:var(--blue-l);border:1px solid var(--blue-b);border-radius:2px;color:var(--blue);font-size:13px;font-weight:500;font-family:'Noto Sans TC',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;}
 .pk-nav-btn:active{opacity:.75;}
-/* reviews */
-.rv-item{padding:11px 13px;margin-bottom:7px;border-left:3px solid;}
+.rv-item{padding:10px 12px;margin-bottom:6px;border-left:3px solid;}
 .rv-high{background:var(--green-l);border-color:var(--green);}
 .rv-low{background:var(--red-l);border-color:var(--red);}
 .rv-mid{background:var(--surface2);border-color:var(--border-md);}
-.rv-meta{display:flex;align-items:center;gap:5px;margin-bottom:4px;flex-wrap:wrap;}
+.rv-meta{display:flex;align-items:center;gap:5px;margin-bottom:3px;flex-wrap:wrap;}
 .rv-author{font-size:12px;font-weight:500;}
 .rv-stars{font-size:11px;color:var(--gold);}
 .rv-time{font-size:11px;color:var(--text3);}
-.rv-text{font-size:13px;color:var(--text2);line-height:1.65;}
-.rv-more-btn{background:none;border:none;color:var(--gold);font-size:13px;cursor:pointer;padding:6px 0;font-family:'Noto Sans TC',sans-serif;}
-/* actions */
-.d-actions{display:flex;gap:8px;margin-top:14px;}
-.d-act{
-  flex:1;height:46px;border-radius:2px;border:1px solid var(--border-strong);
-  background:transparent;font-size:13px;font-weight:500;
-  font-family:'Noto Sans TC',sans-serif;color:var(--text2);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:4px;
-}
+.rv-text{font-size:12px;color:var(--text2);line-height:1.65;}
+.rv-more-btn{background:none;border:none;color:var(--gold);font-size:13px;cursor:pointer;padding:5px 0;font-family:'Noto Sans TC',sans-serif;}
+.d-actions{display:flex;gap:8px;margin-top:13px;}
+.d-act{flex:1;height:46px;border-radius:2px;border:1px solid var(--border-strong);background:transparent;font-size:13px;font-weight:500;font-family:'Noto Sans TC',sans-serif;color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;}
 .d-act.primary{background:var(--ink);color:var(--inv);border-color:var(--ink);}
 .d-act:active{opacity:.75;}
 
-/* ══ FAVORITES ══ */
+/* FAV PANEL */
 .fav-panel{display:none;position:fixed;inset:0;background:var(--overlay);z-index:60;align-items:flex-end;}
 .fav-panel.show{display:flex;}
-.fav-sheet{
-  background:var(--surface);width:100%;max-height:80vh;overflow-y:auto;
-  padding:16px 16px calc(24px + env(safe-area-inset-bottom));
-  border-top:2px solid var(--ink);
-}
-.fav-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.fav-sheet{background:var(--surface);width:100%;max-height:80vh;overflow-y:auto;padding:16px 16px calc(24px + env(safe-area-inset-bottom));border-top:2px solid var(--ink);}
+.fav-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;}
 .fav-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;}
 .fav-close{background:none;border:none;font-size:20px;color:var(--text2);cursor:pointer;}
 .fav-empty{text-align:center;padding:36px 0;color:var(--text3);font-size:14px;font-style:italic;}
-.fav-item{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--border);}
+.fav-item{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid var(--border);}
 .fav-item:last-child{border-bottom:none;}
-.fav-em{font-size:26px;flex-shrink:0;}
+.fav-em{font-size:24px;flex-shrink:0;}
 .fav-info{flex:1;min-width:0;}
 .fav-iname{font-family:'Playfair Display',serif;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:2px;}
 .fav-iaddr{font-size:11px;color:var(--text3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.fav-nav{
-  height:30px;padding:0 12px;border-radius:1px;
-  background:var(--gold-l);border:1px solid var(--gold-b);
-  color:var(--gold);font-size:12px;font-weight:500;
-  font-family:'Noto Sans TC',sans-serif;cursor:pointer;white-space:nowrap;
-}
+.fav-nav{height:30px;padding:0 12px;border-radius:1px;background:var(--gold-l);border:1px solid var(--gold-b);color:var(--gold);font-size:12px;font-weight:500;font-family:'Noto Sans TC',sans-serif;cursor:pointer;white-space:nowrap;}
 
 /* loading / empty */
-.loading{text-align:center;padding:52px 14px;color:var(--text2);}
-.spinner{width:24px;height:24px;border:2px solid var(--border-md);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 14px;}
+.loading{text-align:center;padding:48px 14px;color:var(--text2);}
+.spinner-el{width:24px;height:24px;border:2px solid var(--border-md);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 13px;}
 @keyframes spin{to{transform:rotate(360deg);}}
 .search-note{font-size:12px;color:var(--text3);margin-top:5px;font-style:italic;}
-.empty{text-align:center;padding:52px 14px;color:var(--text2);}
+.empty{text-align:center;padding:48px 14px;color:var(--text2);}
 .empty-icon{font-size:40px;display:block;margin-bottom:10px;}
 .empty small{display:block;margin-top:6px;font-size:12px;color:var(--text3);font-style:italic;}
-
 #map{display:none;}
 </style>
 </head>
@@ -479,7 +314,7 @@ input[type=range]{flex:1;accent-color:var(--gold);cursor:pointer;height:3px;}
 
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="brand-block">
+    <div>
       <div class="brand-kicker">美食探索指南</div>
       <div class="brand-name">尋味</div>
       <div class="brand-tagline">附近的精彩，一指探索</div>
@@ -494,16 +329,32 @@ input[type=range]{flex:1;accent-color:var(--gold);cursor:pointer;height:3px;}
 </div>
 
 <div class="scroll-area">
+
+  <!-- Session history -->
+  <div class="history-strip" id="historyStrip" style="display:none">
+    <div class="history-hdr">
+      <span class="history-title">本次瀏覽紀錄</span>
+      <button class="history-clear" onclick="clearHistory()">清除</button>
+    </div>
+    <div class="history-scroll" id="historyScroll"></div>
+  </div>
+
   <!-- Filter panel -->
   <div class="filter-panel">
+
     <!-- Location -->
     <div class="fp-row">
       <div class="fp-label">所在位置</div>
-      <div style="display:flex;gap:7px;">
-        <input class="m-input" style="flex:1;margin-bottom:0;height:40px;" id="locationInput" type="text" placeholder="地址、地標、捷運站..."/>
-        <button style="height:40px;padding:0 13px;background:var(--gold-l);border:1px solid var(--gold-b);border-radius:2px;color:var(--gold);font-size:12px;font-weight:500;font-family:'Noto Sans TC',sans-serif;cursor:pointer;white-space:nowrap;" onclick="locateMe()" id="locBtn">📍 定位</button>
+      <div class="search-hist-wrap">
+        <div style="display:flex;gap:7px;">
+          <input class="m-input" style="flex:1;margin-bottom:0;height:40px;" id="locationInput" type="text" placeholder="地址、地標、捷運站..."
+            oninput="onLocInput()" onfocus="showSearchHist()" onblur="setTimeout(hideSearchHist,200)"/>
+          <button style="height:40px;padding:0 13px;background:var(--gold-l);border:1px solid var(--gold-b);border-radius:2px;color:var(--gold);font-size:12px;font-weight:500;font-family:'Noto Sans TC',sans-serif;cursor:pointer;white-space:nowrap;" onclick="locateMe()" id="locBtn">📍 定位</button>
+        </div>
+        <div class="search-hist-list" id="searchHistList"></div>
       </div>
     </div>
+
     <!-- Time -->
     <div class="fp-row">
       <div class="fp-label">用餐時段</div>
@@ -518,6 +369,7 @@ input[type=range]{flex:1;accent-color:var(--gold);cursor:pointer;height:3px;}
         <button class="chip" data-v="supper"    onclick="toggleChip(this,'type')">🌃 消夜</button>
       </div>
     </div>
+
     <!-- Cuisine -->
     <div class="fp-row">
       <div class="fp-label">料理類型</div>
@@ -532,10 +384,23 @@ input[type=range]{flex:1;accent-color:var(--gold);cursor:pointer;height:3px;}
         <button class="chip" data-v="cafe"             onclick="toggleChip(this,'cuisine')">☕ 咖啡廳</button>
       </div>
     </div>
-    <!-- Range + rating + sort -->
+
+    <!-- Price -->
+    <div class="fp-row">
+      <div class="fp-label">價位範圍</div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;">
+        <button class="price-chip" data-p="-1" onclick="togglePrice(this)">不限</button>
+        <button class="price-chip" data-p="1"  onclick="togglePrice(this)">$ 平價</button>
+        <button class="price-chip" data-p="2"  onclick="togglePrice(this)">$$ 中價</button>
+        <button class="price-chip" data-p="3"  onclick="togglePrice(this)">$$$ 較貴</button>
+        <button class="price-chip" data-p="4"  onclick="togglePrice(this)">$$$$ 高級</button>
+      </div>
+    </div>
+
+    <!-- Advanced -->
     <div class="fp-row">
       <div class="fp-label">進階設定</div>
-      <div class="sl-wrap" style="margin-bottom:10px;">
+      <div class="sl-row">
         <label>搜尋範圍</label>
         <input type="range" min="200" max="5000" step="100" value="1000" id="radiusSlider" oninput="updateRadius(this.value)"/>
         <span class="sl-val" id="rv">1.0 km</span>
@@ -558,8 +423,8 @@ input[type=range]{flex:1;accent-color:var(--gold);cursor:pointer;height:3px;}
         </div>
       </div>
       <div class="inline-row">
-        <label style="min-width:0;">只看</label>
-        <div class="open-toggle" onclick="toggleOpenOnly()">
+        <label style="min-width:0">只看</label>
+        <div class="toggle-row" onclick="toggleOpenOnly()">
           <div class="toggle-track" id="openToggle"><div class="toggle-thumb"></div></div>
           <span class="toggle-label">現在營業中</span>
         </div>
@@ -570,6 +435,11 @@ input[type=range]{flex:1;accent-color:var(--gold);cursor:pointer;height:3px;}
   <div class="results-area" id="results"></div>
 </div>
 
+<!-- Spinner FAB -->
+<button class="spinner-fab" id="spinnerFab" onclick="showSpinModal()">
+  🎯<span class="spinner-fab-count" id="spinCount">0</span>
+</button>
+
 <div class="search-bar">
   <button class="btn-search" id="searchBtn" onclick="doSearch()">— 搜尋附近美食 —</button>
 </div>
@@ -579,7 +449,7 @@ input[type=range]{flex:1;accent-color:var(--gold);cursor:pointer;height:3px;}
   <div class="modal-sheet">
     <div class="m-handle"></div>
     <div class="m-title">API Key 設定</div>
-    <div class="m-desc">設定後自動儲存，下次無需重新輸入。<br><a href="https://console.cloud.google.com/apis/credentials" target="_blank">前往 Google Cloud 申請</a>（需啟用 Places API + Geocoding API）</div>
+    <div class="m-desc">設定後自動儲存，下次無需重新輸入。<br><a href="https://console.cloud.google.com/apis/credentials" target="_blank">前往 Google Cloud 申請</a></div>
     <input class="m-input" type="password" id="apiKeyInput" placeholder="AIzaSy..."/>
     <div class="m-status" id="apiStatus"></div>
     <button class="m-btn-p" onclick="saveAndLoad()">儲存並載入</button>
@@ -603,16 +473,49 @@ input[type=range]{flex:1;accent-color:var(--gold);cursor:pointer;height:3px;}
   </div>
 </div>
 
+<!-- Spinner Modal -->
+<div class="spin-modal" id="spinModal" onclick="if(event.target===this)hideSpinModal()">
+  <div class="spin-box">
+    <div class="spin-title">今天吃什麼？</div>
+    <div class="spin-subtitle">按中間按鈕開始轉</div>
+    <div class="wheel-wrap">
+      <div class="wheel-pointer">▼</div>
+      <canvas class="wheel-canvas" id="wheelCanvas" width="260" height="260"></canvas>
+      <div class="wheel-center" onclick="startSpin()">🎯</div>
+    </div>
+    <div class="spin-result" id="spinResult">
+      <div class="spin-result-label">命運選擇</div>
+      <div class="spin-result-name" id="spinResultName"></div>
+      <div class="spin-result-meta" id="spinResultMeta"></div>
+      <div class="spin-result-actions">
+        <button class="spin-act" onclick="spinAgain()">再轉一次</button>
+        <button class="spin-act primary" id="spinNavBtn">▶ 導航前往</button>
+      </div>
+    </div>
+    <div class="spin-list">
+      <div class="spin-list-title">已選餐廳</div>
+      <div id="spinListItems"></div>
+    </div>
+    <button class="spin-close" onclick="hideSpinModal()">關閉</button>
+  </div>
+</div>
+
 <div id="map"></div>
+
 <script>
 // ══ STATE ══
 let placesService,geocoder,mapsLoaded=false;
 let currentLat=null,currentLng=null;
 let minRating=3.5,searchRadius=1000,sortMode='dist',openOnly=false;
-let selTypes=new Set(),selCuisines=new Set();
+let selTypes=new Set(),selCuisines=new Set(),selPrices=new Set();
 let dpPhotos=[],dpIdx=0;
-let favorites=JSON.parse(localStorage.getItem('fav4')||'{}');
+let favorites=JSON.parse(localStorage.getItem('fav7')||'{}');
+let searchHistory=JSON.parse(localStorage.getItem('searchHist')||'[]');
+let sessionHistory=[]; // cleared on page load
+let spinSelected=new Map(); // placeId -> place data
+let spinAngle=0,spinning=false,animFrame=null;
 
+// ══ CUISINE / PRICE DATA ══
 const C={
   chinese:{label:'中式',cls:'pch',emoji:'🥢'},western:{label:'西式',cls:'pwe',emoji:'🍳'},
   western_american:{label:'美式',cls:'pam',emoji:'🍔'},japanese:{label:'日式',cls:'pja',emoji:'🍱'},
@@ -620,22 +523,12 @@ const C={
   brunch:{label:'早午餐',cls:'pbr',emoji:'☀️'},cafe:{label:'咖啡廳',cls:'pca',emoji:'☕'},
   other:{label:'其他',cls:'pg',emoji:'🍽'},
 };
-const TKW={
-  all:'餐廳 小吃 食堂',breakfast:'早餐 豆漿 蛋餅 燒餅 飯糰',
-  brunch:'早午餐 brunch',lunch:'午餐 定食 便當 快炒',
-  afternoon:'下午茶 甜點 蛋糕',cafe:'咖啡廳 coffee cafe 手搖飲',
-  dinner:'晚餐 熱炒 火鍋 餐廳',supper:'消夜 宵夜 鹹酥雞 滷味 串燒'
-};
-const CKW={
-  chinese:'中式 台灣 小吃 牛肉麵 滷肉飯 炒飯 熱炒',
-  western:'西式 義大利 pizza pasta 歐式',
-  western_american:'美式 漢堡 burger 炸雞',
-  japanese:'日式 壽司 拉麵 丼 定食 居酒屋',
-  thai:'泰式 打拋 泰國料理',
-  korean:'韓式 烤肉 部隊鍋 石鍋拌飯',
-  cafe:'咖啡 coffee cafe 手沖'
-};
+const PRICE_LABEL={1:'$',2:'$$',3:'$$$',4:'$$$$'};
+const PRICE_TEXT={1:'平價',2:'中價',3:'較貴',4:'高級'};
+const TKW={all:'餐廳 小吃 食堂',breakfast:'早餐 豆漿 蛋餅 燒餅',brunch:'早午餐 brunch',lunch:'午餐 定食 便當 快炒',afternoon:'下午茶 甜點 蛋糕',cafe:'咖啡廳 coffee cafe 手搖飲',dinner:'晚餐 熱炒 火鍋 餐廳',supper:'消夜 宵夜 鹹酥雞 滷味'};
+const CKW={chinese:'中式 台灣 小吃 牛肉麵 滷肉飯 炒飯',western:'西式 義大利 pizza pasta',western_american:'美式 漢堡 burger 炸雞',japanese:'日式 壽司 拉麵 丼 定食',thai:'泰式 打拋 泰國料理',korean:'韓式 烤肉 部隊鍋',cafe:'咖啡 coffee cafe'};
 
+// ══ INIT ══
 window.addEventListener('load',()=>{
   if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
   applyTheme(localStorage.getItem('theme')||'light');
@@ -648,41 +541,34 @@ window.addEventListener('load',()=>{
   if(la&&lo){currentLat=parseFloat(la);currentLng=parseFloat(lo);}
   document.querySelector('#typeChips .chip[data-v="all"]').classList.add('on');
   document.querySelector('#cuisineChips .chip[data-v="all"]').classList.add('on');
+  document.querySelector('.price-chip[data-p="-1"]').classList.add('on');
 });
 
-function applyTheme(t){
-  document.documentElement.setAttribute('data-theme',t);
-  localStorage.setItem('theme',t);
-  document.getElementById('themeBtn').textContent=t==='dark'?'☀️':'🌙';
-}
+// ══ THEME ══
+function applyTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t);document.getElementById('themeBtn').textContent=t==='dark'?'☀️':'🌙';}
 function toggleTheme(){applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');}
+
+// ══ CONTROLS ══
 function updateRadius(v){searchRadius=parseInt(v);document.getElementById('rv').textContent=v>=1000?(v/1000).toFixed(1)+' km':v+' m';}
 function setSort(el){sortMode=el.dataset.s;document.querySelectorAll('[data-s]').forEach(b=>b.classList.remove('on'));el.classList.add('on');}
 function setRating(val,el){minRating=val;document.querySelectorAll('.mini-btn:not([data-s])').forEach(b=>b.classList.remove('on'));el.classList.add('on');}
-function toggleOpenOnly(){
-  openOnly=!openOnly;
-  const t=document.getElementById('openToggle');
-  if(openOnly)t.classList.add('on');else t.classList.remove('on');
-}
+function toggleOpenOnly(){openOnly=!openOnly;const t=document.getElementById('openToggle');openOnly?t.classList.add('on'):t.classList.remove('on');}
 
 function toggleChip(el,group){
   const v=el.dataset.v,set=group==='type'?selTypes:selCuisines,pid=group==='type'?'typeChips':'cuisineChips';
-  if(v==='all'){
-    set.clear();
-    document.querySelectorAll(`#${pid} .chip`).forEach(b=>b.classList.remove('on'));
-    el.classList.add('on');
-    if(group==='cuisine')document.documentElement.setAttribute('data-cuisine','all');
-    return;
-  }
+  if(v==='all'){set.clear();document.querySelectorAll(`#${pid} .chip`).forEach(b=>b.classList.remove('on'));el.classList.add('on');if(group==='cuisine')document.documentElement.setAttribute('data-cuisine','all');return;}
   document.querySelector(`#${pid} .chip[data-v="all"]`).classList.remove('on');
-  if(set.has(v)){set.delete(v);el.classList.remove('on');}
-  else{set.add(v);el.classList.add('on');}
-  if(set.size===0){
-    document.querySelector(`#${pid} .chip[data-v="all"]`).classList.add('on');
-    if(group==='cuisine')document.documentElement.setAttribute('data-cuisine','all');
-  }else if(group==='cuisine'){
-    document.documentElement.setAttribute('data-cuisine',[...selCuisines].join(' '));
-  }
+  if(set.has(v)){set.delete(v);el.classList.remove('on');}else{set.add(v);el.classList.add('on');}
+  if(set.size===0){document.querySelector(`#${pid} .chip[data-v="all"]`).classList.add('on');if(group==='cuisine')document.documentElement.setAttribute('data-cuisine','all');}
+  else if(group==='cuisine')document.documentElement.setAttribute('data-cuisine',[...selCuisines].join(' '));
+}
+
+function togglePrice(el){
+  const p=parseInt(el.dataset.p);
+  if(p===-1){selPrices.clear();document.querySelectorAll('.price-chip').forEach(b=>b.classList.remove('on'));el.classList.add('on');return;}
+  document.querySelector('.price-chip[data-p="-1"]').classList.remove('on');
+  if(selPrices.has(p)){selPrices.delete(p);el.classList.remove('on');}else{selPrices.add(p);el.classList.add('on');}
+  if(selPrices.size===0)document.querySelector('.price-chip[data-p="-1"]').classList.add('on');
 }
 
 // ══ API ══
@@ -691,9 +577,7 @@ function hideApiModal(){document.getElementById('apiModal').classList.remove('sh
 function saveAndLoad(){
   const key=document.getElementById('apiKeyInput').value.trim();
   if(!key){document.getElementById('apiStatus').textContent='請輸入 API Key';return;}
-  localStorage.setItem('gmaps_key',key);
-  document.getElementById('apiStatus').textContent='載入中...';
-  loadSDK(key);
+  localStorage.setItem('gmaps_key',key);document.getElementById('apiStatus').textContent='載入中...';loadSDK(key);
 }
 function loadSDK(key){
   if(mapsLoaded){hideApiModal();return;}
@@ -722,134 +606,166 @@ function locateMe(){
     localStorage.setItem('last_lat',currentLat);localStorage.setItem('last_lng',currentLng);
     if(geocoder){
       geocoder.geocode({location:{lat:currentLat,lng:currentLng},language:'zh-TW'},(res,st)=>{
-        if(st==='OK'&&res[0]){
-          const a=res[0].formatted_address.replace(/^台灣/,'').trim();
-          document.getElementById('locationInput').value=a;
-          localStorage.setItem('last_loc',a);
-        }
+        if(st==='OK'&&res[0]){const a=res[0].formatted_address.replace(/^台灣/,'').trim();document.getElementById('locationInput').value=a;localStorage.setItem('last_loc',a);}
       });
     }
     btn.textContent='✅ 已定位';btn.disabled=false;
   },()=>{btn.textContent='📍 定位';btn.disabled=false;alert('無法取得位置');},{enableHighAccuracy:true,timeout:10000});
 }
 
-// ══ HELPERS ══
-function mDist(la1,lo1,la2,lo2){
-  const R=6371000,dL=(la2-la1)*Math.PI/180,dN=(lo2-lo1)*Math.PI/180;
-  const a=Math.sin(dL/2)**2+Math.cos(la1*Math.PI/180)*Math.cos(la2*Math.PI/180)*Math.sin(dN/2)**2;
-  return Math.round(R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a)));
+// ══ SEARCH HISTORY ══
+function onLocInput(){hideSearchHist();}
+function showSearchHist(){
+  if(!searchHistory.length)return;
+  const q=document.getElementById('locationInput').value.trim().toLowerCase();
+  const filtered=q?searchHistory.filter(h=>h.toLowerCase().includes(q)):searchHistory;
+  if(!filtered.length)return;
+  const list=document.getElementById('searchHistList');
+  list.innerHTML=filtered.map(h=>`<div class="hist-item" onclick="selectHist('${h.replace(/'/g,"\\'")}')"><span>${h}</span><button class="hist-del" onclick="event.stopPropagation();delHist('${h.replace(/'/g,"\\'")}')">✕</button></div>`).join('');
+  list.classList.add('show');
 }
-function fmtDist(m){return m>=1000?(m/1000).toFixed(1)+'km':m+'m';}
+function hideSearchHist(){document.getElementById('searchHistList').classList.remove('show');}
+function selectHist(h){document.getElementById('locationInput').value=h;hideSearchHist();}
+function delHist(h){searchHistory=searchHistory.filter(x=>x!==h);localStorage.setItem('searchHist',JSON.stringify(searchHistory));showSearchHist();}
+function addSearchHist(loc){
+  if(!loc)return;
+  searchHistory=searchHistory.filter(x=>x!==loc);
+  searchHistory.unshift(loc);
+  if(searchHistory.length>8)searchHistory=searchHistory.slice(0,8);
+  localStorage.setItem('searchHist',JSON.stringify(searchHistory));
+}
 
+// ══ SESSION HISTORY ══
+function addSessionHistory(place,ci){
+  if(sessionHistory.find(x=>x.placeId===place.place_id))return;
+  sessionHistory.unshift({placeId:place.place_id,name:place.name,emoji:ci.emoji,rating:place.rating,lat:place.geometry.location.lat(),lng:place.geometry.location.lng(),vicinity:''});
+  renderSessionHistory();
+}
+function renderSessionHistory(){
+  if(!sessionHistory.length){document.getElementById('historyStrip').style.display='none';return;}
+  document.getElementById('historyStrip').style.display='';
+  document.getElementById('historyScroll').innerHTML=sessionHistory.map(h=>`
+    <div class="history-card" onclick="openHistoryDetail('${h.placeId}')">
+      <div style="font-size:18px;margin-bottom:4px">${h.emoji}</div>
+      <div class="history-card-name">${h.name}</div>
+      <div class="history-card-meta">${h.rating?'★'+h.rating.toFixed(1):''}</div>
+    </div>`).join('');
+}
+function clearHistory(){sessionHistory=[];renderSessionHistory();}
+function openHistoryDetail(placeId){
+  const h=sessionHistory.find(x=>x.placeId===placeId);
+  if(!h)return;
+  const mapsUrl=`https://www.google.com/maps/place/?q=place_id:${placeId}`;
+  const navUrl=`https://www.google.com/maps/dir/?api=1&destination=${h.lat},${h.lng}`;
+  document.getElementById('detailContent').innerHTML=`
+    <div class="d-photo-wrap"><div class="d-no-photo"><span>${h.emoji}</span></div><button class="d-close" onclick="closeDetail()">✕</button></div>
+    <div class="d-body">
+      <div class="d-kicker">瀏覽紀錄</div>
+      <div class="d-name">${h.name}</div>
+      ${h.rating?`<div class="d-score-row"><span class="d-score">★ ${h.rating.toFixed(1)}</span></div>`:''}
+      <div class="d-sec">地址</div>
+      <div class="d-addr-row"><div class="d-addr-text" id="d-addr">載入中...</div></div>
+      <div class="d-sec">停車場</div><div style="font-size:13px;color:var(--text3)">請重新搜尋以取得停車場資訊</div>
+      <div class="d-sec">用戶評論</div><div id="d-reviews"><div style="font-size:13px;color:var(--text3);font-style:italic">評論載入中...</div></div>
+      <div class="d-actions">
+        <button class="d-act" onclick="window.open('${mapsUrl}','_blank')">🗺 地圖</button>
+        <button class="d-act primary" onclick="window.open('${navUrl}','_blank')">▶ 導航前往</button>
+      </div>
+    </div>`;
+  dpPhotos=[];dpIdx=0;
+  document.getElementById('detailBg').classList.add('show');
+  document.getElementById('detailSheet').scrollTop=0;
+  placesService.getDetails({placeId,fields:['formatted_address','reviews','photos','opening_hours'],language:'zh-TW'},(det,st)=>{
+    if(st!=='OK'||!det)return;
+    if(det.formatted_address){const el=document.getElementById('d-addr');if(el)el.textContent=det.formatted_address.replace(/^台灣/,'').trim();}
+    if(det.photos&&det.photos.length>0){
+      dpPhotos=det.photos;
+      const wrap=document.querySelector('.d-photo-wrap');
+      if(wrap){wrap.innerHTML=`<img id="dp-img" src="${det.photos[0].getUrl({maxWidth:800,maxHeight:400})}"/><div class="d-photo-grad"></div><button class="d-close" onclick="closeDetail()">✕</button><div class="d-arr-wrap"><button class="d-arr" id="dp-prev" style="${det.photos.length>1?'':'display:none'}" onclick="dpNav(-1)">‹</button><button class="d-arr" id="dp-next" style="${det.photos.length>1?'':'display:none'}" onclick="dpNav(1)">›</button></div>${det.photos.length>1?`<div class="d-photo-cnt" id="dp-cnt">1 / ${det.photos.length}</div>`:''}`;}
+    }
+    loadReviewsIntoEl(det,document.getElementById('d-reviews'));
+  });
+}
+
+// ══ HELPERS ══
+function mDist(la1,lo1,la2,lo2){const R=6371000,dL=(la2-la1)*Math.PI/180,dN=(lo2-lo1)*Math.PI/180;const a=Math.sin(dL/2)**2+Math.cos(la1*Math.PI/180)*Math.cos(la2*Math.PI/180)*Math.sin(dN/2)**2;return Math.round(R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a)));}
+function fmtDist(m){return m>=1000?(m/1000).toFixed(1)+'km':m+'m';}
 function cuisineOf(name,types){
   const s=((name||'')+(types||[]).join(' ')).toLowerCase();
   if(/漢堡|美式|burger|diner|bbq|炸雞|wings|american/.test(s))return 'western_american';
   if(/中式|粥|燒臘|滷肉|豆漿|饅頭|飯糰|蛋餅|包子|米粉|麵線|炒飯|chinese|台式|小籠|牛肉麵|涼麵|鹹酥|熱炒|便當|滷味/.test(s))return 'chinese';
   if(/西式|三明治|吐司|鬆餅|貝果|western|sandwich|pizza|pasta|bistro|歐式/.test(s))return 'western';
-  if(/日式|壽司|拉麵|丼|定食|japanese|sushi|ramen|udon|居酒屋|天婦羅/.test(s))return 'japanese';
+  if(/日式|壽司|拉麵|丼|定食|japanese|sushi|ramen|udon|居酒屋/.test(s))return 'japanese';
   if(/泰式|打拋|泰國|thai/.test(s))return 'thai';
   if(/韓式|韓國|korean|部隊鍋|石鍋|烤肉/.test(s))return 'korean';
   if(/咖啡|coffee|cafe|caf[eé]|拿鐵|手沖|烘焙/.test(s))return 'cafe';
   if(/早午餐|brunch/.test(s))return 'brunch';
   return 'other';
 }
-function matchCuisine(name,types){if(selCuisines.size===0)return true;return selCuisines.has(cuisineOf(name,types));}
+function matchCuisine(n,t){if(selCuisines.size===0)return true;return selCuisines.has(cuisineOf(n,t));}
+function matchPrice(p){if(selPrices.size===0)return true;if(p==null)return true;return selPrices.has(p);}
+function nearestPark(parks,pLat,pLng){let best=null,bd=Infinity;(parks||[]).forEach(pk=>{const d=mDist(pLat,pLng,pk.geometry.location.lat(),pk.geometry.location.lng());if(d<bd){bd=d;best=pk;}});return best?{name:best.name,dist:bd,placeId:best.place_id,vicinity:best.vicinity||'',rating:best.rating,lat:best.geometry.location.lat(),lng:best.geometry.location.lng()}:null;}
 
-// ══ OPEN-NOW using periods (timezone-correct) ══
-function isOpenNow(opening_hours){
-  if(!opening_hours)return null;
+// ══ OPEN NOW (periods-based, timezone correct) ══
+function isOpenNow(oh){
+  if(!oh)return null;
   try{
-    // periods: [{open:{day,time},close:{day,time}}] day=0 Sun
-    if(opening_hours.periods){
-      const now=new Date();
-      const day=now.getDay(); // 0=Sun
-      const hhmm=now.getHours()*100+now.getMinutes();
-      for(const p of opening_hours.periods){
-        if(p.open&&!p.close)return true; // 24h
+    if(oh.periods){
+      const now=new Date(),day=now.getDay(),hhmm=now.getHours()*100+now.getMinutes();
+      for(const p of oh.periods){
+        if(p.open&&!p.close)return true;
         if(!p.open||!p.close)continue;
-        const od=p.open.day,ot=parseInt(p.open.time||'0000');
-        const cd=p.close.day,ct=parseInt(p.close.time||'0000');
-        if(od===cd){
-          if(day===od&&hhmm>=ot&&hhmm<ct)return true;
-        } else {
-          // spans midnight
-          if(day===od&&hhmm>=ot)return true;
-          if(day===cd&&hhmm<ct)return true;
-        }
+        const od=p.open.day,ot=parseInt(p.open.time||'0000'),cd=p.close.day,ct=parseInt(p.close.time||'0000');
+        if(od===cd){if(day===od&&hhmm>=ot&&hhmm<ct)return true;}
+        else{if(day===od&&hhmm>=ot)return true;if(day===cd&&hhmm<ct)return true;}
       }
       return false;
     }
-    return opening_hours.isOpen();
+    return oh.isOpen();
   }catch(e){return null;}
 }
-
-// Today's hours string from weekday_text
-function getTodayHours(opening_hours){
-  if(!opening_hours||!opening_hours.weekday_text)return null;
-  // weekday_text: index 0=Monday in Google's format
-  const jsDay=new Date().getDay(); // 0=Sun,1=Mon...
-  const gwDay=(jsDay+6)%7; // convert: Mon=0,Tue=1,...,Sun=6
-  return opening_hours.weekday_text[gwDay]||null;
+function getTodayHours(oh){
+  if(!oh||!oh.weekday_text)return null;
+  const gwDay=(new Date().getDay()+6)%7;
+  return oh.weekday_text[gwDay]||null;
 }
 
-function nearestPark(parks,pLat,pLng){
-  let best=null,bd=Infinity;
-  (parks||[]).forEach(pk=>{
-    const d=mDist(pLat,pLng,pk.geometry.location.lat(),pk.geometry.location.lng());
-    if(d<bd){bd=d;best=pk;}
-  });
-  if(!best)return null;
-  return{name:best.name,dist:bd,placeId:best.place_id,vicinity:best.vicinity||'',rating:best.rating,lat:best.geometry.location.lat(),lng:best.geometry.location.lng()};
-}
-
+// ══ SEARCH ══
 function buildKws(){
   const tk=selTypes.size>0?[...selTypes].flatMap(t=>(TKW[t]||'').split(' ').filter(Boolean)):(TKW['all']||'').split(' ').filter(Boolean);
   const ck=selCuisines.size>0?[...selCuisines].flatMap(c=>(CKW[c]||'').split(' ').filter(Boolean)):[];
-  if(ck.length>0){
-    const co=[];
-    ck.forEach(c=>tk.slice(0,2).forEach(t=>co.push(c+' '+t)));
-    ck.forEach(c=>co.push(c));
-    return[...new Set(co)].slice(0,8);
-  }
+  if(ck.length>0){const co=[];ck.forEach(c=>tk.slice(0,2).forEach(t=>co.push(c+' '+t)));ck.forEach(c=>co.push(c));return[...new Set(co)].slice(0,8);}
   return[...new Set(tk)].slice(0,6);
 }
-
 function srchKw(lat,lng,kw,radius){
   return new Promise(res=>{
     placesService.nearbySearch({location:new google.maps.LatLng(lat,lng),rankBy:google.maps.places.RankBy.DISTANCE,type:'restaurant',keyword:kw,language:'zh-TW'},(r,st)=>{
-      if(st==='OK'||st==='ZERO_RESULTS'){
-        res((r||[]).filter(p=>{const d=mDist(lat,lng,p.geometry.location.lat(),p.geometry.location.lng());p._dist=d;return d<=radius&&(!minRating||(p.rating||0)>=minRating);}));
-      }else res([]);
+      if(st==='OK'||st==='ZERO_RESULTS'){res((r||[]).filter(p=>{const d=mDist(lat,lng,p.geometry.location.lat(),p.geometry.location.lng());p._dist=d;return d<=radius&&(!minRating||(p.rating||0)>=minRating)&&matchPrice(p.price_level);}));}
+      else res([]);
     });
   });
 }
 function srchFeat(lat,lng,kw,radius){
   return new Promise(res=>{
     placesService.nearbySearch({location:new google.maps.LatLng(lat,lng),rankBy:google.maps.places.RankBy.DISTANCE,type:'restaurant',keyword:kw,language:'zh-TW'},(r,st)=>{
-      if(st==='OK'){res((r||[]).filter(p=>{const d=mDist(lat,lng,p.geometry.location.lat(),p.geometry.location.lng());p._dist=d;return d>radius&&d<=radius*3&&(p.rating||0)>=4.5;}));}
+      if(st==='OK'){res((r||[]).filter(p=>{const d=mDist(lat,lng,p.geometry.location.lat(),p.geometry.location.lng());p._dist=d;return d>radius&&d<=radius*3&&(p.rating||0)>=4.5&&matchPrice(p.price_level);}));}
       else res([]);
     });
   });
 }
-function srchParks(lat,lng,radius){
-  return new Promise(res=>{
-    placesService.nearbySearch({location:new google.maps.LatLng(lat,lng),radius:Math.min(radius+1500,50000),type:'parking',language:'zh-TW'},r=>res(r||[]));
-  });
-}
+function srchParks(lat,lng,radius){return new Promise(res=>{placesService.nearbySearch({location:new google.maps.LatLng(lat,lng),radius:Math.min(radius+1500,50000),type:'parking',language:'zh-TW'},r=>res(r||[]));});}
 
 async function doSearch(){
   if(!mapsLoaded){showApiModal();return;}
   const locVal=document.getElementById('locationInput').value.trim();
-  const div=document.getElementById('results');
-  const btn=document.getElementById('searchBtn');
+  const div=document.getElementById('results'),btn=document.getElementById('searchBtn');
   btn.disabled=true;
-  div.innerHTML=`<div class="loading"><div class="spinner"></div>搜尋中...<div class="search-note">多關鍵字搜尋中，稍候片刻</div></div>`;
+  div.innerHTML=`<div class="loading"><div class="spinner-el"></div>搜尋中...<div class="search-note">多關鍵字搜尋，稍候片刻</div></div>`;
 
   const go=async(lat,lng)=>{
     currentLat=lat;currentLng=lng;
     localStorage.setItem('last_lat',lat);localStorage.setItem('last_lng',lng);
-    const kws=buildKws();
-    const seen=new Set(),inside=[];
+    const kws=buildKws();const seen=new Set(),inside=[];
     for(let i=0;i<kws.length;i+=3){
       const b=kws.slice(i,i+3);
       const rs=await Promise.all(b.map(k=>srchKw(lat,lng,k,searchRadius)));
@@ -858,179 +774,224 @@ async function doSearch(){
     const frs=await Promise.all(kws.slice(0,3).map(k=>srchFeat(lat,lng,k,searchRadius)));
     const fseen=new Set([...seen]),featured=[];
     frs.forEach(l=>l.forEach(p=>{if(!fseen.has(p.place_id)&&matchCuisine(p.name,p.types)){fseen.add(p.place_id);featured.push(p);}}));
-
     let filtered=selCuisines.size>0?inside.filter(p=>matchCuisine(p.name,p.types)):inside;
     filtered.sort((a,b)=>sortMode==='rating'?(b.rating||0)-(a.rating||0):sortMode==='reviews'?(b.user_ratings_total||0)-(a.user_ratings_total||0):a._dist-b._dist);
     featured.sort((a,b)=>(b.rating||0)-(a.rating||0));
-
     const parks=await srchParks(lat,lng,searchRadius);
-    renderResults(filtered,featured.slice(0,5),parks,div,openOnly);
+    renderResults(filtered,featured.slice(0,5),parks,div);
     btn.disabled=false;
   };
 
   if(locVal){
     geocoder.geocode({address:locVal,language:'zh-TW'},(res,st)=>{
-      if(st==='OK'&&res[0]){localStorage.setItem('last_loc',locVal);go(res[0].geometry.location.lat(),res[0].geometry.location.lng());}
+      if(st==='OK'&&res[0]){addSearchHist(locVal);go(res[0].geometry.location.lat(),res[0].geometry.location.lng());}
       else{div.innerHTML=`<div class="empty"><span class="empty-icon">📍</span>找不到此地址<small>請重新輸入</small></div>`;btn.disabled=false;}
     });
   }else if(currentLat){go(currentLat,currentLng);}
   else{div.innerHTML=`<div class="empty"><span class="empty-icon">📍</span>請輸入地址或點「定位」</div>`;btn.disabled=false;}
 }
 
-function renderResults(inside,featured,parks,div,openOnly){
-  // openOnly filter handled in card level (need details), just mark for now
-  if(!inside.length&&!featured.length){
-    div.innerHTML=`<div class="empty"><span class="empty-icon">🔍</span>${fmtDist(searchRadius)} 內找不到餐廳<small>試試放寬範圍或降低最低評分</small></div>`;
-    return;
-  }
+// ══ RENDER ══
+function renderResults(inside,featured,parks,div){
+  if(!inside.length&&!featured.length){div.innerHTML=`<div class="empty"><span class="empty-icon">🔍</span>${fmtDist(searchRadius)} 內找不到符合條件的餐廳<small>試試放寬篩選條件</small></div>`;return;}
   div.innerHTML='';
   if(inside.length){
     const h=document.createElement('div');h.className='sec-hdr';
-    h.innerHTML=`<span class="sec-title">附近餐廳</span><span class="sec-count">${inside.length} 間</span><span class="sec-pill sp-gold">依${sortMode==='dist'?'距離':sortMode==='rating'?'評分':'評論'}排序</span>`;
+    h.innerHTML=`<span class="sec-title">附近餐廳</span><span class="sec-count">${inside.length} 間</span><span class="sec-pill sp-gold">${sortMode==='dist'?'依距離':sortMode==='rating'?'依評分':'依評論'}</span>`;
     div.appendChild(h);
+    const note=document.createElement('div');note.style.cssText='font-size:11px;color:var(--text3);margin-bottom:10px;font-style:italic;';note.textContent='點左上角 □ 可選取餐廳加入轉盤';div.appendChild(note);
     inside.forEach(p=>div.appendChild(makeCard(p,parks)));
   }
   if(featured.length){
     const h2=document.createElement('div');h2.className='sec-hdr';h2.style.marginTop='20px';
-    h2.innerHTML=`<span class="sec-title">精選好店</span><span class="sec-count">超出範圍</span><span class="sec-pill sp-purple">4.5★ 以上</span>`;
-    div.appendChild(h2);
-    featured.forEach(p=>div.appendChild(makeCard(p,parks)));
+    h2.innerHTML=`<span class="sec-title">精選好店</span><span class="sec-count">超出範圍</span><span class="sec-pill sp-purple">4.5★+</span>`;
+    div.appendChild(h2);featured.forEach(p=>div.appendChild(makeCard(p,parks)));
   }
 }
+
+function priceStr(level){if(!level)return null;return PRICE_LABEL[level]||null;}
 
 function makeCard(p,parks){
   const pLat=p.geometry.location.lat(),pLng=p.geometry.location.lng();
   const d=p._dist||0,c=cuisineOf(p.name,p.types),ci=C[c]||C.other;
-  const photos=p.photos||[],pk=nearestPark(parks,pLat,pLng),isFav=!!favorites[p.place_id];
-
+  const photos=p.photos||[],pk=nearestPark(parks,pLat,pLng),isFav=!!favorites[p.place_id],isSpin=spinSelected.has(p.place_id);
+  const ps=priceStr(p.price_level);
   const card=document.createElement('div');
-  card.className='r-card';card._place=p;card._photos=photos;card._pk=pk;card._dist=d;
+  card.className='r-card';card._place=p;card._photos=photos;card._pk=pk;card._dist=d;card._ci=ci;
 
-  const favId=`fav-${p.place_id.slice(-8)}`;
   const thumb=photos.length>0
-    ?`<div class="r-photo">
-        <img src="${photos[0].getUrl({maxWidth:640,maxHeight:240})}" loading="lazy"/>
-        <div class="r-photo-grad"></div>
-        ${p.rating?`<div class="r-score">★ ${p.rating.toFixed(1)}</div>`:''}
-        <div class="r-photo-name">
-          <div class="r-photo-kicker">${ci.emoji} ${ci.label} · ${fmtDist(d)}</div>
-          <div class="r-photo-title">${p.name}</div>
-        </div>
-      </div>`
-    :`<div class="r-photo">
-        <div class="r-no-photo"><span>${ci.emoji}</span><span style="font-size:12px">暫無照片</span></div>
-        ${p.rating?`<div class="r-score">★ ${p.rating.toFixed(1)}</div>`:''}
-        <div class="r-photo-name">
-          <div class="r-photo-kicker">${ci.emoji} ${ci.label} · ${fmtDist(d)}</div>
-          <div class="r-photo-title">${p.name}</div>
-        </div>
-      </div>`;
+    ?`<div class="r-photo"><img src="${photos[0].getUrl({maxWidth:640,maxHeight:240})}" loading="lazy"/><div class="r-photo-grad"></div>${p.rating?`<div class="r-score">★ ${p.rating.toFixed(1)}</div>`:''}<div class="r-photo-name"><div class="r-photo-kicker">${ci.emoji} ${ci.label} · ${fmtDist(d)}${ps?' · '+ps:''}</div><div class="r-photo-title">${p.name}</div></div>${ps?`<div class="r-price-badge">${ps}</div>`:''}</div>`
+    :`<div class="r-photo"><div class="r-no-photo"><span>${ci.emoji}</span><span style="font-size:12px">暫無照片</span></div>${p.rating?`<div class="r-score">★ ${p.rating.toFixed(1)}</div>`:''}<div class="r-photo-name"><div class="r-photo-kicker">${ci.emoji} ${ci.label} · ${fmtDist(d)}${ps?' · '+ps:''}</div><div class="r-photo-title">${p.name}</div></div>${ps?`<div class="r-price-badge">${ps}</div>`:''}</div>`;
 
   card.innerHTML=`
-    <button class="r-fav${isFav?' saved':''}" id="${favId}" onclick="toggleFav(event,'${p.place_id}','${p.name.replace(/'/g,"\\'")}','${(p.vicinity||'').replace(/'/g,"\\'")}','${ci.emoji}','${pLat}','${pLng}','${favId}')">🔖</button>
+    <div class="r-select${isSpin?' checked':''}" id="sel-${p.place_id.slice(-8)}" onclick="toggleSpin(event,'${p.place_id}')">✓</div>
     ${thumb}
     <div class="r-strip">
       <div class="r-meta">
         ${p.user_ratings_total?`<span class="pill pg">💬 ${p.user_ratings_total.toLocaleString()}</span>`:''}
         <span class="pill ${ci.cls}">${ci.label}</span>
+        ${ps?`<span class="pill pprice">${ps} ${PRICE_TEXT[p.price_level]||''}</span>`:''}
         ${pk?`<span class="pill pg">🅿 ${fmtDist(pk.dist)}</span>`:''}
       </div>
       <div class="r-addr" id="ra-${p.place_id.slice(-8)}">${p.vicinity||''}</div>
-      ${pk?`<div class="r-pk-line">停車場 ${pk.name.slice(0,10)}</div>`:''}
+      ${pk?`<div class="r-pk-line">${pk.name.slice(0,12)}</div>`:''}
       <div class="r-hint">點擊查看詳情 →</div>
     </div>`;
 
-  card.onclick=e=>{if(!e.target.classList.contains('r-fav'))openDetail(card);};
-
-  // Silently fetch full address
-  placesService.getDetails({placeId:p.place_id,fields:['formatted_address'],language:'zh-TW'},(det,st)=>{
-    if(st==='OK'&&det?.formatted_address){
-      const el=document.getElementById(`ra-${p.place_id.slice(-8)}`);
-      if(el)el.textContent=det.formatted_address.replace(/^台灣/,'').trim();
-    }
-  });
+  card.onclick=e=>{if(!e.target.classList.contains('r-select')&&!e.target.closest('.r-select'))openDetail(card);};
+  // background address fetch
+  placesService.getDetails({placeId:p.place_id,fields:['formatted_address'],language:'zh-TW'},(det,st)=>{if(st==='OK'&&det?.formatted_address){const el=document.getElementById(`ra-${p.place_id.slice(-8)}`);if(el)el.textContent=det.formatted_address.replace(/^台灣/,'').trim();}});
   return card;
 }
 
-// ══ FAVORITES ══
-function toggleFav(e,placeId,name,vicinity,emoji,lat,lng,btnId){
+// ══ SPINNER SELECTION ══
+function toggleSpin(e,placeId){
   e.stopPropagation();
-  const btn=document.getElementById(btnId);
-  if(favorites[placeId]){delete favorites[placeId];if(btn)btn.classList.remove('saved');}
+  const card=e.target.closest('.r-card');if(!card)return;
+  const btn=document.getElementById(`sel-${placeId.slice(-8)}`);
+  if(spinSelected.has(placeId)){spinSelected.delete(placeId);if(btn)btn.classList.remove('checked');}
   else{
-    favorites[placeId]={name,vicinity,emoji,lat:parseFloat(lat),lng:parseFloat(lng)};
-    if(btn){btn.classList.add('saved');btn.style.transform='scale(1.35)';setTimeout(()=>{btn.style.transform='';},200);}
+    const p=card._place,ci=card._ci||C.other;
+    spinSelected.set(placeId,{name:p.name,rating:p.rating,ci,lat:p.geometry.location.lat(),lng:p.geometry.location.lng()});
+    if(btn){btn.classList.add('checked');btn.style.transform='scale(1.3)';setTimeout(()=>{btn.style.transform='';},200);}
   }
-  localStorage.setItem('fav4',JSON.stringify(favorites));
+  updateSpinFab();
 }
-function showFavPanel(){
-  const list=document.getElementById('favList'),keys=Object.keys(favorites);
-  list.innerHTML=keys.length?keys.map(id=>{
-    const f=favorites[id];
-    const nav=`https://www.google.com/maps/dir/?api=1&destination=${f.lat},${f.lng}`;
-    return `<div class="fav-item"><div class="fav-em">${f.emoji}</div><div class="fav-info"><div class="fav-iname">${f.name}</div><div class="fav-iaddr">${f.vicinity}</div></div><button class="fav-nav" onclick="window.open('${nav}','_blank')">▶ 導航</button></div>`;
-  }).join(''):'<div class="fav-empty">尚無收藏<br>點餐廳卡片上的 🔖 即可收藏</div>';
-  document.getElementById('favPanel').classList.add('show');
+function updateSpinFab(){
+  const fab=document.getElementById('spinnerFab'),cnt=document.getElementById('spinCount');
+  const n=spinSelected.size;
+  cnt.textContent=n;
+  if(n>=2)fab.classList.add('show');else fab.classList.remove('show');
 }
-function hideFavPanel(){document.getElementById('favPanel').classList.remove('show');}
+
+// ══ SPINNER WHEEL ══
+const WHEEL_COLORS=['#8a6508','#2a6a40','#6840b8','#1a3868','#7a2020','#30784a','#42207a','#1e5030','#8a4000','#1a5030'];
+
+function drawWheel(angle){
+  const canvas=document.getElementById('wheelCanvas');if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const cx=130,cy=130,r=120,items=[...spinSelected.values()];
+  if(!items.length)return;
+  const slice=(2*Math.PI)/items.length;
+  ctx.clearRect(0,0,260,260);
+  items.forEach((item,i)=>{
+    const start=angle+i*slice,end=start+slice;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,start,end);ctx.closePath();
+    ctx.fillStyle=WHEEL_COLORS[i%WHEEL_COLORS.length];ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,.3)';ctx.lineWidth=1;ctx.stroke();
+    // label
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(start+slice/2);
+    ctx.textAlign='right';ctx.fillStyle='#fff';
+    ctx.font=`500 ${items.length>6?'10':'12'}px Noto Sans TC,sans-serif`;
+    const label=item.name.length>8?item.name.slice(0,7)+'…':item.name;
+    ctx.fillText(label,r-8,4);ctx.restore();
+  });
+  // center
+  ctx.beginPath();ctx.arc(cx,cy,20,0,2*Math.PI);ctx.fillStyle='var(--surface)';ctx.fill();
+}
+
+function showSpinModal(){
+  if(spinSelected.size<2){alert('請先勾選至少 2 間餐廳');return;}
+  document.getElementById('spinResult').classList.remove('show');
+  renderSpinList();
+  spinAngle=0;drawWheel(spinAngle);
+  document.getElementById('spinModal').classList.add('show');
+}
+function hideSpinModal(){document.getElementById('spinModal').classList.remove('show');if(animFrame){cancelAnimationFrame(animFrame);animFrame=null;}}
+
+function renderSpinList(){
+  const items=[...spinSelected.values()];
+  document.getElementById('spinListItems').innerHTML=items.map((item,i)=>`
+    <div class="spin-item">
+      <div class="spin-item-dot" style="background:${WHEEL_COLORS[i%WHEEL_COLORS.length]}"></div>
+      <span class="spin-item-name">${item.name}</span>
+      <span class="spin-item-score">${item.rating?'★'+item.rating.toFixed(1):''}</span>
+    </div>`).join('');
+}
+
+let spinVelocity=0,spinTarget=0;
+function startSpin(){
+  if(spinning)return;
+  spinning=true;
+  document.getElementById('spinResult').classList.remove('show');
+  const items=[...spinSelected.values()];
+  // pick random winner
+  const winnerIdx=Math.floor(Math.random()*items.length);
+  const slice=(2*Math.PI)/items.length;
+  // target angle: pointer (top = -π/2) lands on winner slice center
+  const winnerCenter=winnerIdx*slice+slice/2;
+  const extra=Math.PI*2*5; // 5 full rotations
+  spinTarget=spinAngle+extra+((-Math.PI/2)-winnerCenter-spinAngle%(Math.PI*2)+Math.PI*2)%(Math.PI*2);
+  spinVelocity=0.35;
+  animateSpin(items,winnerIdx);
+}
+
+function animateSpin(items,winnerIdx){
+  const diff=spinTarget-spinAngle;
+  if(diff<0.01){
+    spinning=false;spinAngle=spinTarget;drawWheel(spinAngle);
+    showWinner(items[winnerIdx]);return;
+  }
+  const ease=Math.min(diff*0.06,0.35);
+  spinAngle+=ease;
+  drawWheel(spinAngle);
+  animFrame=requestAnimationFrame(()=>animateSpin(items,winnerIdx));
+}
+
+function showWinner(item){
+  const el=document.getElementById('spinResult');
+  document.getElementById('spinResultName').textContent=item.name;
+  document.getElementById('spinResultMeta').textContent=(item.rating?'★'+item.rating.toFixed(1)+' · ':'')+item.ci.label;
+  const navBtn=document.getElementById('spinNavBtn');
+  navBtn.onclick=()=>window.open(`https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lng}`,'_blank');
+  el.classList.add('show');
+  // haptic if available
+  if(navigator.vibrate)navigator.vibrate([100,50,100]);
+}
+
+function spinAgain(){document.getElementById('spinResult').classList.remove('show');startSpin();}
 
 // ══ DETAIL ══
 function openDetail(card){
-  const p=card._place,pk=card._pk,photos=card._photos,d=card._dist;
-  const c=cuisineOf(p.name,p.types),ci=C[c]||C.other;
+  const p=card._place,pk=card._pk,photos=card._photos,d=card._dist,ci=card._ci||C.other;
   const mapsUrl=`https://www.google.com/maps/place/?q=place_id:${p.place_id}`;
   const navUrl=`https://www.google.com/maps/dir/?api=1&destination=${p.geometry.location.lat()},${p.geometry.location.lng()}`;
+  const ps=priceStr(p.price_level);
+
+  // add to session history
+  addSessionHistory(p,ci);
 
   const photoHtml=photos.length>0
-    ?`<div class="d-photo-wrap">
-        <img id="dp-img" src="${photos[0].getUrl({maxWidth:800,maxHeight:400})}" alt="照片"/>
-        <div class="d-photo-grad"></div>
-        <button class="d-close" onclick="closeDetail()">✕</button>
-        <div class="d-arr-wrap">
-          <button class="d-arr" id="dp-prev" style="display:none" onclick="dpNav(-1)">‹</button>
-          <button class="d-arr" id="dp-next" style="display:none" onclick="dpNav(1)">›</button>
-        </div>
-        <div class="d-photo-cnt" id="dp-cnt" style="display:none"></div>
-      </div>`
+    ?`<div class="d-photo-wrap"><img id="dp-img" src="${photos[0].getUrl({maxWidth:800,maxHeight:400})}" alt="照片"/><div class="d-photo-grad"></div><button class="d-close" onclick="closeDetail()">✕</button><div class="d-arr-wrap"><button class="d-arr" id="dp-prev" style="display:none" onclick="dpNav(-1)">‹</button><button class="d-arr" id="dp-next" style="display:none" onclick="dpNav(1)">›</button></div><div class="d-photo-cnt" id="dp-cnt" style="display:none"></div></div>`
     :`<div class="d-photo-wrap"><div class="d-no-photo"><span>${ci.emoji}</span><span style="font-size:13px">暫無照片</span></div><button class="d-close" onclick="closeDetail()">✕</button></div>`;
 
-  // parking — use lat/lng for reliable navigation
-  let pkHtml='<div style="font-size:13px;color:var(--text3);padding:8px 0">附近未找到停車場</div>';
-  if(pk){
-    // use coordinates for reliable destination
-    const pkNav=`https://www.google.com/maps/dir/?api=1&destination=${pk.lat},${pk.lng}`;
-    pkHtml=`<div class="pk-block">
-      <div class="pk-name">🅿️ ${pk.name}</div>
-      <div class="pk-info">📍 ${pk.vicinity}${pk.rating?`<br>⭐ ${pk.rating.toFixed(1)}`:''}　🚶 距此餐廳 ${fmtDist(pk.dist)}</div>
-      <button class="pk-nav-btn" onclick="window.open('${pkNav}','_blank')">▶ 導航至停車場</button>
-    </div>`;
-  }
+  let pkHtml='<div style="font-size:13px;color:var(--text3)">附近未找到停車場</div>';
+  if(pk){const pkNav=`https://www.google.com/maps/dir/?api=1&destination=${pk.lat},${pk.lng}`;pkHtml=`<div class="pk-block"><div class="pk-name">🅿️ ${pk.name}</div><div class="pk-info">📍 ${pk.vicinity}${pk.rating?`<br>⭐ ${pk.rating.toFixed(1)}`:''}　🚶 距此餐廳 ${fmtDist(pk.dist)}</div><button class="pk-nav-btn" onclick="window.open('${pkNav}','_blank')">▶ 導航至停車場</button></div>`;}
 
   document.getElementById('detailContent').innerHTML=`
     ${photoHtml}
     <div class="d-body">
-      <div class="d-kicker">${ci.emoji} ${ci.label} · ${fmtDist(d)}</div>
+      <div class="d-kicker">${ci.emoji} ${ci.label}${ps?' · '+ps:''} · ${fmtDist(d)}</div>
       <div class="d-name">${p.name}</div>
       <div class="d-score-row">
         ${p.rating?`<span class="d-score">★ ${p.rating.toFixed(1)}</span>`:''}
         ${p.user_ratings_total?`<span class="d-rev-ct">${p.user_ratings_total.toLocaleString()} 則評論</span>`:''}
+        ${ps?`<span class="d-price-tag">${ps} ${PRICE_TEXT[p.price_level]||''}</span>`:''}
         <span class="d-open-badge" id="d-open-badge"></span>
       </div>
       <div id="d-hours-box" style="display:none" class="d-hours-box"></div>
       <div class="d-divider"></div>
       <div class="d-sec">地址</div>
-      <div class="d-addr-row">
-        <div class="d-addr-text" id="d-addr">${p.vicinity||'載入中...'}</div>
-        <button class="d-copy-btn" onclick="copyAddr()">📋</button>
+      <div class="d-addr-row"><div class="d-addr-text" id="d-addr">${p.vicinity||'載入中...'}</div><button class="d-copy-btn" onclick="copyAddr()">📋</button></div>
+      <div class="d-action-row">
+        <button class="d-sm-btn" onclick="sharePlace('${p.name.replace(/'/g,"\\'")}','${mapsUrl}')">📤 分享</button>
+        <div id="d-phone-wrap" style="flex:1;display:flex;"></div>
       </div>
-      <div id="d-phone-wrap"></div>
-      <button class="d-share-btn" onclick="sharePlace('${p.name.replace(/'/g,"\\'")}','${mapsUrl}')">📤 分享這間餐廳</button>
       <div class="d-divider"></div>
-      <div class="d-sec">停車場</div>
-      ${pkHtml}
+      <div class="d-sec">停車場</div>${pkHtml}
       <div class="d-divider"></div>
       <div class="d-sec">用戶評論（最新優先）</div>
-      <div id="d-reviews"><div style="font-size:13px;color:var(--text3);padding:8px 0;font-style:italic">評論載入中...</div></div>
+      <div id="d-reviews"><div style="font-size:13px;color:var(--text3);font-style:italic;padding:8px 0">評論載入中...</div></div>
       <div class="d-actions">
         <button class="d-act" onclick="window.open('${mapsUrl}','_blank')">🗺 地圖</button>
         <button class="d-act primary" onclick="window.open('${navUrl}','_blank')">▶ 導航前往</button>
@@ -1041,60 +1002,38 @@ function openDetail(card){
   document.getElementById('detailBg').classList.add('show');
   document.getElementById('detailSheet').scrollTop=0;
 
-  placesService.getDetails({
-    placeId:p.place_id,
-    fields:['formatted_address','opening_hours','reviews','photos','formatted_phone_number'],
-    language:'zh-TW',
-  },(det,st)=>{
+  placesService.getDetails({placeId:p.place_id,fields:['formatted_address','opening_hours','reviews','photos','formatted_phone_number'],language:'zh-TW'},(det,st)=>{
     if(st!=='OK'||!det)return;
-    // address
-    if(det.formatted_address){
-      const el=document.getElementById('d-addr');
-      if(el)el.textContent=det.formatted_address.replace(/^台灣/,'').trim();
-    }
-    // phone
-    if(det.formatted_phone_number){
-      const pw=document.getElementById('d-phone-wrap');
-      if(pw)pw.innerHTML=`<button class="d-phone-btn" onclick="window.open('tel:${det.formatted_phone_number}','_self')">📞 ${det.formatted_phone_number}</button>`;
-    }
-    // opening hours — accurate via periods
+    if(det.formatted_address){const el=document.getElementById('d-addr');if(el)el.textContent=det.formatted_address.replace(/^台灣/,'').trim();}
+    if(det.formatted_phone_number){const pw=document.getElementById('d-phone-wrap');if(pw)pw.innerHTML=`<button class="d-sm-btn green" style="width:100%" onclick="window.open('tel:${det.formatted_phone_number}','_self')">📞 ${det.formatted_phone_number}</button>`;}
     if(det.opening_hours){
       const open=isOpenNow(det.opening_hours);
       const badge=document.getElementById('d-open-badge');
-      if(badge&&open!==null){
-        badge.textContent=open?'✅ 現在營業中':'❌ 現在休息中';
-        badge.className='d-open-badge '+(open?'open':'closed');
-      }
+      if(badge&&open!==null){badge.textContent=open?'✅ 現在營業中':'❌ 現在休息中';badge.className='d-open-badge '+(open?'open':'closed');}
       const todayStr=getTodayHours(det.opening_hours);
       const hbox=document.getElementById('d-hours-box');
       if(hbox&&todayStr){hbox.textContent='🕐 '+todayStr;hbox.style.display='';}
     }
-    // photos update
     if(det.photos&&det.photos.length>1){
       dpPhotos=det.photos;
       ['dp-prev','dp-next'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='';});
-      const cnt=document.getElementById('dp-cnt');
-      if(cnt){cnt.textContent=`1 / ${dpPhotos.length}`;cnt.style.display='';}
+      const cnt=document.getElementById('dp-cnt');if(cnt){cnt.textContent=`1 / ${dpPhotos.length}`;cnt.style.display='';}
     }
-    // reviews — sorted by time desc
-    const rvDiv=document.getElementById('d-reviews');
-    if(!rvDiv)return;
-    if(!det.reviews?.length){rvDiv.innerHTML='<div style="font-size:13px;color:var(--text3);font-style:italic">暫無評論</div>';return;}
-    const reviews=[...det.reviews].sort((a,b)=>(b.time||0)-(a.time||0));
-    const high=reviews.filter(r=>r.rating>=4),low=reviews.filter(r=>r.rating<=2);
-    const shown=[...high.slice(0,2),...low.slice(0,1)];
-    const rest=reviews.filter(r=>!shown.includes(r));
-    const mkRv=r=>{
-      const stars='★'.repeat(r.rating)+'☆'.repeat(5-r.rating);
-      const txt=(r.text||'').length>180?r.text.slice(0,180)+'…':(r.text||'（無文字評論）');
-      const cls=r.rating>=4?'rv-high':r.rating<=2?'rv-low':'rv-mid';
-      return `<div class="rv-item ${cls}"><div class="rv-meta"><span class="rv-author">${r.author_name}</span><span class="rv-stars">${stars}</span><span class="rv-time">${r.relative_time_description||''}</span></div><div class="rv-text">${txt}</div></div>`;
-    };
-    let html=shown.map(mkRv).join('');
-    if(rest.length)html+=`<button class="rv-more-btn" id="rv-more">▼ 顯示更多（${rest.length} 則）</button>`;
-    rvDiv.innerHTML=html;
-    if(rest.length)document.getElementById('rv-more').onclick=function(){this.remove();rest.forEach(r=>rvDiv.insertAdjacentHTML('beforeend',mkRv(r)));};
+    loadReviewsIntoEl(det,document.getElementById('d-reviews'));
   });
+}
+
+function loadReviewsIntoEl(det,rvDiv){
+  if(!rvDiv)return;
+  if(!det.reviews?.length){rvDiv.innerHTML='<div style="font-size:13px;color:var(--text3);font-style:italic">暫無評論</div>';return;}
+  const reviews=[...det.reviews].sort((a,b)=>(b.time||0)-(a.time||0));
+  const high=reviews.filter(r=>r.rating>=4),low=reviews.filter(r=>r.rating<=2);
+  const shown=[...high.slice(0,2),...low.slice(0,1)];const rest=reviews.filter(r=>!shown.includes(r));
+  const mkRv=r=>{const stars='★'.repeat(r.rating)+'☆'.repeat(5-r.rating);const txt=(r.text||'').length>180?r.text.slice(0,180)+'…':(r.text||'（無文字評論）');const cls=r.rating>=4?'rv-high':r.rating<=2?'rv-low':'rv-mid';return `<div class="rv-item ${cls}"><div class="rv-meta"><span class="rv-author">${r.author_name}</span><span class="rv-stars">${stars}</span><span class="rv-time">${r.relative_time_description||''}</span></div><div class="rv-text">${txt}</div></div>`;};
+  let html=shown.map(mkRv).join('');
+  if(rest.length)html+=`<button class="rv-more-btn" id="rv-more">▼ 顯示更多（${rest.length} 則）</button>`;
+  rvDiv.innerHTML=html;
+  if(rest.length)document.getElementById('rv-more').onclick=function(){this.remove();rest.forEach(r=>rvDiv.insertAdjacentHTML('beforeend',mkRv(r)));};
 }
 
 function dpNav(dir){
@@ -1102,20 +1041,19 @@ function dpNav(dir){
   dpIdx=(dpIdx+dir+dpPhotos.length)%dpPhotos.length;
   const img=document.getElementById('dp-img');
   if(img){img.style.opacity='0';setTimeout(()=>{img.src=dpPhotos[dpIdx].getUrl({maxWidth:800,maxHeight:400});img.style.opacity='1';},250);}
-  const cnt=document.getElementById('dp-cnt');
-  if(cnt)cnt.textContent=`${dpIdx+1} / ${dpPhotos.length}`;
+  const cnt=document.getElementById('dp-cnt');if(cnt)cnt.textContent=`${dpIdx+1} / ${dpPhotos.length}`;
 }
 function closeDetail(){document.getElementById('detailBg').classList.remove('show');}
-function copyAddr(){
-  const el=document.getElementById('d-addr');if(!el)return;
-  navigator.clipboard?.writeText(el.textContent).then(()=>{
-    const b=document.querySelector('.d-copy-btn');if(b){b.textContent='✅';setTimeout(()=>{b.textContent='📋';},1500);}
-  }).catch(()=>{});
+function copyAddr(){const el=document.getElementById('d-addr');if(!el)return;navigator.clipboard?.writeText(el.textContent).then(()=>{const b=document.querySelector('.d-copy-btn');if(b){b.textContent='✅';setTimeout(()=>{b.textContent='📋';},1500);}}).catch(()=>{});}
+function sharePlace(name,url){if(navigator.share){navigator.share({title:name,text:`推薦這間餐廳：${name}`,url}).catch(()=>{});}else{navigator.clipboard?.writeText(url).then(()=>alert('連結已複製！'));}}
+
+// ══ FAVORITES ══
+function showFavPanel(){
+  const list=document.getElementById('favList'),keys=Object.keys(favorites);
+  list.innerHTML=keys.length?keys.map(id=>{const f=favorites[id];const nav=`https://www.google.com/maps/dir/?api=1&destination=${f.lat},${f.lng}`;return `<div class="fav-item"><div class="fav-em">${f.emoji}</div><div class="fav-info"><div class="fav-iname">${f.name}</div><div class="fav-iaddr">${f.vicinity}</div></div><button class="fav-nav" onclick="window.open('${nav}','_blank')">▶ 導航</button></div>`;}).join(''):'<div class="fav-empty">尚無收藏<br>點餐廳卡片左上角可收藏</div>';
+  document.getElementById('favPanel').classList.add('show');
 }
-function sharePlace(name,url){
-  if(navigator.share){navigator.share({title:name,text:`推薦這間餐廳：${name}`,url}).catch(()=>{});}
-  else{navigator.clipboard?.writeText(url).then(()=>alert('連結已複製！'));}
-}
+function hideFavPanel(){document.getElementById('favPanel').classList.remove('show');}
 </script>
 </body>
 </html>
