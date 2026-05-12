@@ -1,5 +1,10 @@
-const CACHE = 'foodfinder-v7';
-const ASSETS = ['/', '/index.html', '/manifest.json'];
+const CACHE = 'foodfinder-v7b';
+const ASSETS = [
+  '/foodfinder/',
+  '/foodfinder/index.html',
+  '/foodfinder/manifest.json'
+];
+
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
 });

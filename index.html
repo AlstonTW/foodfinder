@@ -530,7 +530,7 @@ const CKW={chinese:'中式 台灣 小吃 牛肉麵 滷肉飯 炒飯',western:'�
 
 // ══ INIT ══
 window.addEventListener('load',()=>{
-  if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+  if('serviceWorker'in navigator)navigator.serviceWorker.register('/foodfinder/sw.js').catch(()=>{});
   applyTheme(localStorage.getItem('theme')||'light');
   const key=localStorage.getItem('gmaps_key');
   if(key){document.getElementById('apiKeyInput').value=key;loadSDK(key);}
