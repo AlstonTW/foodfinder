@@ -738,10 +738,30 @@ function buildKws(){
   if(ck.length>0){const co=[];ck.forEach(c=>tk.slice(0,2).forEach(t=>co.push(c+' '+t)));ck.forEach(c=>co.push(c));return[...new Set(co)].slice(0,8);}
   return[...new Set(tk)].slice(0,6);
 }
+function isExcluded(p){
+  const s=((p.name||'')+(p.types||[]).join(' ')).toLowerCase();
+  return /預約|私廚|無菜單|邀請|限定包場|秘境|會員制/.test(s);
+}
+
 function srchKw(lat,lng,kw,radius){
   return new Promise(res=>{
     placesService.nearbySearch({location:new google.maps.LatLng(lat,lng),rankBy:google.maps.places.RankBy.DISTANCE,type:'restaurant',keyword:kw,language:'zh-TW'},(r,st)=>{
-      if(st==='OK'||st==='ZERO_RESULTS'){res((r||[]).filter(p=>{const d=mDist(lat,lng,p.geometry.location.lat(),p.geometry.location.lng());p._dist=d;return d<=radius&&(!minRating||(p.rating||0)>=minRating)&&matchPrice(p.price_level);}));}
+      if(st==='OK'||st==='ZERO_RESULTS'){res((r||[]).filter(p=>{const d=mDist(lat,lng,p.geometry.location.lat(),p.geometry.location.lng());p._dist=d;return d<=radius&&(!minRating||(p.rating||0)>=minRating)&&matchPrice(p.price_level)&&!isExcluded(p);}));}
+      else res([]);
+    });
+  });
+}
+
+// TextSearch：找更多沒有關鍵字標籤的店
+function srchText(lat,lng,query,radius){
+  return new Promise(res=>{
+    placesService.textSearch({location:new google.maps.LatLng(lat,lng),radius,query,language:'zh-TW'},(r,st)=>{
+      if(st==='OK'||st==='ZERO_RESULTS'){res((r||[]).filter(p=>{
+        if(!p.geometry)return false;
+        const d=mDist(lat,lng,p.geometry.location.lat(),p.geometry.location.lng());
+        p._dist=d;
+        return d<=radius&&(!minRating||(p.rating||0)>=minRating)&&matchPrice(p.price_level)&&!isExcluded(p);
+      }));}
       else res([]);
     });
   });
@@ -749,7 +769,7 @@ function srchKw(lat,lng,kw,radius){
 function srchFeat(lat,lng,kw,radius){
   return new Promise(res=>{
     placesService.nearbySearch({location:new google.maps.LatLng(lat,lng),rankBy:google.maps.places.RankBy.DISTANCE,type:'restaurant',keyword:kw,language:'zh-TW'},(r,st)=>{
-      if(st==='OK'){res((r||[]).filter(p=>{const d=mDist(lat,lng,p.geometry.location.lat(),p.geometry.location.lng());p._dist=d;return d>radius&&d<=radius*3&&(p.rating||0)>=4.5&&matchPrice(p.price_level);}));}
+      if(st==='OK'){res((r||[]).filter(p=>{const d=mDist(lat,lng,p.geometry.location.lat(),p.geometry.location.lng());p._dist=d;return d>radius&&d<=radius*3&&(p.rating||0)>=4.5&&matchPrice(p.price_level)&&!isExcluded(p);}));}
       else res([]);
     });
   });
@@ -767,11 +787,18 @@ async function doSearch(){
     currentLat=lat;currentLng=lng;
     localStorage.setItem('last_lat',lat);localStorage.setItem('last_lng',lng);
     const kws=buildKws();const seen=new Set(),inside=[];
+
+    // 1. 關鍵字搜尋（原有）
     for(let i=0;i<kws.length;i+=3){
       const b=kws.slice(i,i+3);
       const rs=await Promise.all(b.map(k=>srchKw(lat,lng,k,searchRadius)));
       rs.forEach(l=>l.forEach(p=>{if(!seen.has(p.place_id)){seen.add(p.place_id);inside.push(p);}}));
     }
+
+    // 2. TextSearch：用通用詞找更多沒有標籤的店
+    const textQueries=['附近餐廳','附近小吃','附近美食'];
+    const textResults=await Promise.all(textQueries.map(q=>srchText(lat,lng,q,searchRadius)));
+    textResults.forEach(l=>l.forEach(p=>{if(!seen.has(p.place_id)){seen.add(p.place_id);inside.push(p);}}));
     const frs=await Promise.all(kws.slice(0,3).map(k=>srchFeat(lat,lng,k,searchRadius)));
     const fseen=new Set([...seen]),featured=[];
     frs.forEach(l=>l.forEach(p=>{if(!fseen.has(p.place_id)&&matchCuisine(p.name,p.types)){fseen.add(p.place_id);featured.push(p);}}));
