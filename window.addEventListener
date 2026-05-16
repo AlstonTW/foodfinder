@@ -532,9 +532,10 @@ const CKW={chinese:'中式 台灣 小吃 牛肉麵 滷肉飯 炒飯',western:'�
 window.addEventListener('load',()=>{
   if('serviceWorker'in navigator)navigator.serviceWorker.register('/foodfinder/sw.js').catch(()=>{});
   applyTheme(localStorage.getItem('theme')||'light');
-  const key=localStorage.getItem('gmaps_key');
-  if(key){document.getElementById('apiKeyInput').value=key;loadSDK(key);}
-  else setTimeout(showApiModal,500);
+  const key='AIzaSyCdmJtX_Zu7-BDaprryXeWiRslfjKxFbjw';
+  localStorage.setItem('gmaps_key',key);
+  document.getElementById('apiKeyInput').value=key;
+  loadSDK(key);
   const loc=localStorage.getItem('last_loc');
   if(loc)document.getElementById('locationInput').value=loc;
   const la=localStorage.getItem('last_lat'),lo=localStorage.getItem('last_lng');
